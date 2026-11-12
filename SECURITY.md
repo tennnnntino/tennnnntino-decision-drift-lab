@@ -68,3 +68,7 @@ No real company data, personal conversations, accounts or external systems are p
 - **Text profiles are lexical and English-centric.** They can miss a meaning change and can flag a harmless one. They are hints for a reviewer.
 - **Labelling kit:** the compiler trusts the labeller's self-declaration. It cannot detect a false one.
 - **ProofPack and reports are unsigned.**
+
+## V1.4.2 connector simulation
+
+The separate route-bound simulation models how a connector rejects P19 when its effective operation differs from the case declaration. The route, payload, clock and approval reference must be supplied independently of the analysed case. The approval ledger is local and ephemeral. Reports explicitly record that no identity was authenticated and no external action was executed. The historical evaluator still trusts the case's declared operation for its own synthetic verdicts.

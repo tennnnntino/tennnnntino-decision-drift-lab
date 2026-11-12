@@ -8,6 +8,14 @@
 
 **Status:** `V1.4.1 PRIVATE CANDIDATE` — independent experimental prototype, **not** a production security product, autonomous AI agent, or scientifically validated benchmark. **Synthetic data only.**
 
+## V1.4.2 candidate — Route-bound P19 simulation
+
+Run `python -m ddlab simulate-p19` for the same case evaluated at two simulated connector routes. The internal draft is allowed. The external send is blocked with `DECLARATION_MISMATCH`.
+
+The Python and JavaScript connector APIs take the operation, payload, clock and approval reference from the simulation harness, separately from the case claim. A simulated approval is scoped to the operation, tenant, target and content and is held against one policy snapshot. It can expire or be revoked, and a successful use consumes it. A case-supplied approval has no authority in this API.
+
+The existing structured evaluator remains the declaration-only path for historical cases. Its P19 reproduction still applies. The connector simulation uses in-memory approvals and performs no external operation. Production integration requires an authenticated approval service, an authoritative connector route and durable enforcement at the execution point.
+
 ## V1.4.1 — External policy, revocation trace, deterministic reports, labelling kit, ProofPack
 
 A hardening pass on V1.4. No new claim of accuracy: there is still no human-reviewed label.

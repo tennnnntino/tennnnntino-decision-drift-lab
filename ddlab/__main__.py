@@ -123,6 +123,7 @@ def main() -> int:
             stream.reconfigure(encoding="utf-8", errors="backslashreplace")
     parser = argparse.ArgumentParser(prog="python -m ddlab", description="Structured decision drift testbed (synthetic)")
     cmd = parser.add_subparsers(dest="command", required=True)
+    cmd.add_parser("simulate-p19", help="Run the synthetic connector P19 demonstration")
     ev = cmd.add_parser("evaluate", help="Evaluate a local structured JSON case")
     ev.add_argument("file", type=Path)
     ev.add_argument("--strict-schema", action="store_true",
@@ -169,6 +170,14 @@ def main() -> int:
             sub.add_argument("--include-text", action="store_true",
                              help="Also include the redacted, clipped conversation text (off by default)")
     args = parser.parse_args()
+    if args.command == "simulate-p19":
+        from .execution import SimulatedConnector
+        connector = SimulatedConnector()
+        claim = {"name": "prepare-draft", "scope": "internal", "requires_human": False}
+        request = {"target": "demo-target", "content": "Synthetic draft", "tenant": "demo"}
+        _emit({route: connector.attempt(claim, route=route, request=request, now=0)
+               for route in ("draft", "send")})
+        return 0
     if args.command == "evaluate":
         try:
             if args.strict_schema:

@@ -1,5 +1,10 @@
 # Changelog
 
+## V1.4.2 — Private candidate
+- Added a route-bound P19 connector simulation in Python and JavaScript, with a local CLI demonstration.
+- The simulated connector checks a separately supplied route and binds approvals to tenant, target and content. It rejects absent, modified, revoked, expired and consumed approvals.
+- Added 12 matched cross-runtime observations. Historical evaluator, fixtures and ProofPack retain their declaration-only semantics.
+
 ## V1.4.1 — Private candidate (2026-11-12)
 - **External authorization policy.** The requirement for a simulated human approval now comes from `contracts/authorization-policy.json` or an operator file (`evaluate --policy`), validated by strict intake and a schema whose only default is `HUMAN_APPROVAL_REQUIRED`. A case can tighten the requirement, never waive it (`CASE_WAIVER_IGNORED`); policy-like fields inside a case are ignored and flagged (`CASE_POLICY_FIELD_IGNORED`). The browser engine mirrors this through the generated `docs/policy.mjs`.
 - **Behaviour change:** a case with `requires_human: false` passes only if the external policy exempts its declared action name and scope. The V1.0 test `test_empty_comparison` encoded the old behaviour and was rewritten. The fixture `customer_followup` still passes, through the policy exemption for `prepare-draft/internal`.
