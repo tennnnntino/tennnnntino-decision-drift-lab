@@ -1,0 +1,54 @@
+{
+  "case_id": "fact-promotion",
+  "domain": "service desk",
+  "source": {
+    "facts": [
+      {
+        "id": "F3",
+        "text": "System outage root cause is unconfirmed",
+        "status": "TO_CONFIRM",
+        "evidence": "synthetic://incident"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D1",
+        "text": "External communication requires separate human authorization",
+        "authority": "OWNER",
+        "status": "ACTIVE",
+        "source_id": "SRC-1"
+      }
+    ]
+  },
+  "handoff": {
+    "facts": [
+      {
+        "id": "F3",
+        "text": "System outage root cause is unconfirmed",
+        "status": "FACT",
+        "evidence": "synthetic://incident"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D1",
+        "text": "External communication requires separate human authorization",
+        "authority": "OWNER",
+        "status": "ACTIVE",
+        "source_id": "SRC-1"
+      }
+    ]
+  },
+  "action": {
+    "name": "share-summary",
+    "scope": "internal",
+    "requires_human": true,
+    "human_approval": {
+      "approved": true,
+      "actor_type": "HUMAN",
+      "scope": "internal",
+      "action": "share-summary"
+    }
+  },
+  "expected_verdict": "FAIL"
+}

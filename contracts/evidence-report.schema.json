@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/decision-drift-lab/evidence-report-v1.schema.json",
+  "title": "Synthetic handoff evidence report V1.4",
+  "description": "Unsigned, data-minimised report produced by ddlab/evidence.py and docs/walkthrough.mjs. The digest is not a signature. Enforced in both runtimes.",
+  "type": "object",
+  "required": ["report_type", "report_schema", "profile", "synthetic_only", "case_ref", "input_digest", "review", "samples", "introduced", "candidate_extraction", "comparators", "recovery", "revocation_ledger", "limitations", "attestation", "redaction"],
+  "additionalProperties": false,
+  "properties": {
+    "report_type": {"const": "synthetic-handoff-evidence-report"},
+    "report_schema": {"const": "1.4.1"},
+    "profile": {"enum": ["full", "portable"]},
+    "synthetic_only": {"const": true},
+    "case_ref": {
+      "type": "object", "required": ["corpus", "split", "case_id", "domain", "title"], "additionalProperties": false,
+      "properties": {
+        "corpus": {"type": "string", "maxLength": 80}, "split": {"type": "string", "maxLength": 40},
+        "case_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$"},
+        "domain": {"type": "string", "maxLength": 80}, "title": {"type": "string", "maxLength": 220}
+      }
+    },
+    "input_digest": {
+      "type": "object", "required": ["algorithm", "value", "scope", "is_signature"], "additionalProperties": false,
+      "properties": {
+        "algorithm": {"const": "sha256"}, "value": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "scope": {"type": "string", "maxLength": 200}, "is_signature": {"const": false}
+      }
+    },
+    "review": {
+      "type": "object", "required": ["label_state", "state", "reviewer_label", "reviewed_on", "authenticated"], "additionalProperties": false,
+      "properties": {
+        "label_state": {"enum": ["CANDIDATE_MODEL_DRAFTED", "HUMAN_REVIEWED_UNAUTHENTICATED"]},
+        "state": {"enum": ["NOT_REVIEWED", "HUMAN_REVIEWED", "HUMAN_AMENDED", "DISPUTED"]},
+        "reviewer_label": {"type": ["string", "null"], "maxLength": 60},
+        "reviewed_on": {"type": ["string", "null"], "maxLength": 10},
+        "authenticated": {"const": false}
+      }
+    },
+    "samples": {"type": "array", "maxItems": 40, "items": {
+      "type": "object", "required": ["item_id", "kind", "source_status", "authority_bearing", "label_outcome", "source_refs", "handoff_ref"], "additionalProperties": false,
+      "properties": {
+        "item_id": {"type": "string", "maxLength": 40}, "kind": {"enum": ["decision", "fact"]},
+        "source_status": {"enum": ["ACTIVE", "REVOKED", "FACT", "TO_CONFIRM"]},
+        "authority_bearing": {"type": "boolean"}, "label_outcome": {"type": "string", "maxLength": 40},
+        "source_refs": {"type": "array", "minItems": 1, "maxItems": 8, "items": {
+          "type": "object", "required": ["turn", "role", "start_byte", "end_byte", "excerpt"], "additionalProperties": false,
+          "properties": {
+            "turn": {"type": "integer", "minimum": 1}, "role": {"type": "string", "maxLength": 20},
+            "start_byte": {"type": "integer", "minimum": 0}, "end_byte": {"type": "integer", "minimum": 1},
+            "excerpt": {"type": "string", "maxLength": 220}
+          }
+        }},
+        "handoff_ref": {"type": ["object", "null"], "required": ["start_byte", "end_byte", "excerpt"], "additionalProperties": false, "properties": {
+          "start_byte": {"type": "integer", "minimum": 0}, "end_byte": {"type": "integer", "minimum": 1},
+          "excerpt": {"type": "string", "maxLength": 220}
+        }}
+      }
+    }},
+    "introduced": {"type": "array", "maxItems": 20, "items": {
+      "type": "object", "required": ["item_id", "kind", "handoff_ref"], "additionalProperties": false,
+      "properties": {
+        "item_id": {"type": "string", "maxLength": 40}, "kind": {"enum": ["decision", "fact"]},
+        "handoff_ref": {"type": "object", "required": ["start_byte", "end_byte", "excerpt"], "additionalProperties": false, "properties": {
+          "start_byte": {"type": "integer", "minimum": 0}, "end_byte": {"type": "integer", "minimum": 1},
+          "excerpt": {"type": "string", "maxLength": 220}
+        }}
+      }
+    }},
+    "candidate_extraction": {
+      "type": "object", "required": ["status"], "additionalProperties": false,
+      "properties": {
+        "status": {"enum": ["RUN", "PYTHON_ONLY"]}, "method": {"type": "string", "maxLength": 120},
+        "candidates": {"type": "array", "maxItems": 200, "items": {
+          "type": "object", "required": ["turn", "kind", "state", "uncertain", "signal", "score", "text"], "additionalProperties": false,
+          "properties": {
+            "turn": {"type": ["integer", "null"]}, "kind": {"type": "string", "maxLength": 20}, "state": {"type": "string", "maxLength": 20},
+            "uncertain": {"type": "boolean"}, "signal": {"type": "string", "maxLength": 40},
+            "score": {"type": "number", "minimum": 0, "maximum": 1}, "text": {"type": "string", "maxLength": 220}
+          }
+        }}
+      }
+    },
+    "comparators": {
+      "type": "object", "required": ["label_findings", "exact_text", "rule_based", "structured_transfer"], "additionalProperties": false,
+      "properties": {
+        "label_findings": {"type": "array", "maxItems": 12, "items": {"type": "string", "maxLength": 40}},
+        "exact_text": {"type": "object", "required": ["drift", "not_verbatim"], "additionalProperties": false, "properties": {
+          "drift": {"type": "boolean"}, "not_verbatim": {"type": "array", "maxItems": 40, "items": {"type": "string", "maxLength": 40}}
+        }},
+        "rule_based": {"$ref": "#/$defs/comparator"},
+        "structured_transfer": {"$ref": "#/$defs/comparator"}
+      }
+    },
+    "recovery": {
+      "type": "object", "required": ["items", "unanchored_handoff_statements", "summary", "method"], "additionalProperties": false,
+      "properties": {
+        "items": {"type": "array", "maxItems": 40, "items": {
+          "type": "object", "required": ["item_id", "kind", "source_status", "recovery", "reasons", "verbatim_in_handoff", "source_ref"], "additionalProperties": false,
+          "properties": {
+            "item_id": {"type": "string", "maxLength": 40}, "kind": {"enum": ["decision", "fact"]},
+            "source_status": {"enum": ["ACTIVE", "REVOKED", "FACT", "TO_CONFIRM"]},
+            "recovery": {"enum": ["RECOVERABLE_VERBATIM", "OWNER_RECONFIRMATION_REQUIRED"]},
+            "reasons": {"type": "array", "maxItems": 6, "items": {"enum": [
+              "REVOKED_IN_SOURCE", "REVOKED_TEXT_PRESENT_IN_HANDOFF", "NOT_VERBATIM_IN_HANDOFF", "UNCERTAIN_IN_SOURCE",
+              "AUTHORITY_NOT_TRANSFERABLE_BY_TEXT", "SUPERSEDED_VERSION_PRESENT_IN_HANDOFF", "REVOCATION_TRACE_NOT_VERBATIM_IN_HANDOFF"]}},
+            "verbatim_in_handoff": {"type": "boolean"},
+            "source_ref": {"type": "object", "required": ["turn", "start_byte", "end_byte"], "additionalProperties": false, "properties": {
+              "turn": {"type": "integer", "minimum": 1}, "start_byte": {"type": "integer", "minimum": 0}, "end_byte": {"type": "integer", "minimum": 1}
+            }}
+          }
+        }},
+        "unanchored_handoff_statements": {"type": "array", "maxItems": 100, "items": {
+          "type": "object", "required": ["text", "start_byte", "end_byte"], "additionalProperties": false,
+          "properties": {"text": {"type": "string", "maxLength": 220}, "start_byte": {"type": "integer", "minimum": 0}, "end_byte": {"type": "integer", "minimum": 1}}
+        }},
+        "summary": {"type": "object", "required": ["recoverable_verbatim", "owner_reconfirmation_required", "unanchored_handoff_statements"], "additionalProperties": false, "properties": {
+          "recoverable_verbatim": {"type": "integer", "minimum": 0}, "owner_reconfirmation_required": {"type": "integer", "minimum": 0},
+          "unanchored_handoff_statements": {"type": "integer", "minimum": 0}
+        }},
+        "method": {"type": "string", "maxLength": 160}
+      }
+    },
+    "revocation_ledger": {"type": "array", "maxItems": 40, "items": {
+      "type": "object", "required": ["item_id", "statement_ref", "revocation_refs", "statement_verbatim_in_handoff", "revocation_verbatim_in_handoff", "trace", "label_outcome", "ambiguity"], "additionalProperties": false,
+      "properties": {
+        "item_id": {"type": "string", "maxLength": 40},
+        "statement_ref": {"$ref": "#/$defs/source_ref"},
+        "revocation_refs": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"$ref": "#/$defs/source_ref"}},
+        "statement_verbatim_in_handoff": {"type": "boolean"}, "revocation_verbatim_in_handoff": {"type": "boolean"},
+        "trace": {"enum": ["REVOCATION_WORDING_PRESENT", "REVOKED_TEXT_PRESENT_WITHOUT_REVOCATION_WORDING", "NO_VERBATIM_TRACE_IN_HANDOFF"]},
+        "label_outcome": {"type": "string", "maxLength": 40},
+        "ambiguity": {"type": ["string", "null"], "maxLength": 300}
+      }
+    }},
+    "limitations": {"type": "array", "minItems": 5, "maxItems": 20, "items": {"type": "string", "maxLength": 300}},
+    "attestation": {"type": "object", "required": ["signed", "statement"], "additionalProperties": false, "properties": {
+      "signed": {"const": false}, "statement": {"type": "string", "maxLength": 200}
+    }},
+    "full_text": {"type": "object", "required": ["turns", "handoff"], "additionalProperties": false, "properties": {
+      "turns": {"type": "array", "maxItems": 60, "items": {"type": "object", "required": ["turn", "speaker", "text"], "additionalProperties": false, "properties": {
+        "turn": {"type": "integer", "minimum": 1}, "speaker": {"type": "string", "maxLength": 60}, "text": {"type": "string", "maxLength": 220}
+      }}},
+      "handoff": {"type": "string", "maxLength": 220}
+    }},
+    "redaction": {"type": "object", "required": ["method", "replacements", "full_text_included"], "additionalProperties": false, "properties": {
+      "method": {"type": "string", "maxLength": 120}, "replacements": {"type": "integer", "minimum": 0}, "full_text_included": {"type": "boolean"}
+    }}
+  },
+  "$defs": {
+    "source_ref": {
+      "type": "object", "required": ["turn", "role", "start_byte", "end_byte", "excerpt"], "additionalProperties": false,
+      "properties": {
+        "turn": {"type": "integer", "minimum": 1}, "role": {"type": "string", "maxLength": 20},
+        "start_byte": {"type": "integer", "minimum": 0}, "end_byte": {"type": "integer", "minimum": 1},
+        "excerpt": {"type": "string", "maxLength": 220}
+      }
+    },
+    "comparator": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "status": {"const": "PYTHON_ONLY"}, "drift": {"type": "boolean"},
+        "codes": {"type": "array", "maxItems": 12, "items": {"type": "string", "maxLength": 40}}
+      }
+    }
+  }
+}

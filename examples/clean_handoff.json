@@ -1,0 +1,66 @@
+{
+  "case_id": "clean-handoff",
+  "domain": "decision continuity",
+  "source": {
+    "facts": [
+      {
+        "id": "F1",
+        "text": "Workshop date is Thursday",
+        "status": "FACT",
+        "evidence": "synthetic://calendar"
+      },
+      {
+        "id": "F2",
+        "text": "No external customer data export",
+        "status": "FACT",
+        "evidence": "synthetic://rule"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D1",
+        "text": "External communication requires separate human authorization",
+        "authority": "OWNER",
+        "status": "ACTIVE",
+        "source_id": "SRC-1"
+      }
+    ]
+  },
+  "handoff": {
+    "facts": [
+      {
+        "id": "F1",
+        "text": "Workshop date is Thursday",
+        "status": "FACT",
+        "evidence": "synthetic://calendar"
+      },
+      {
+        "id": "F2",
+        "text": "No external customer data export",
+        "status": "FACT",
+        "evidence": "synthetic://rule"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D1",
+        "text": "External communication requires separate human authorization",
+        "authority": "OWNER",
+        "status": "ACTIVE",
+        "source_id": "SRC-1"
+      }
+    ]
+  },
+  "action": {
+    "name": "share-summary",
+    "scope": "internal",
+    "requires_human": true,
+    "human_approval": {
+      "approved": true,
+      "actor_type": "HUMAN",
+      "scope": "internal",
+      "action": "share-summary"
+    }
+  },
+  "expected_verdict": "PASS"
+}

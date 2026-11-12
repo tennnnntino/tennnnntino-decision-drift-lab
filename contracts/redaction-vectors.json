@@ -1,0 +1,66 @@
+{
+ "contract": "redaction-vectors-v1.4",
+ "note": "Pattern-based redaction applied to every exported text field. Addresses use reserved .invalid names; the token is an invented string that belongs to no service. R10 records a known gap: non-ASCII digits are not matched.",
+ "vectors": [
+  {
+   "id": "R01",
+   "input": "Write to mara.fennick@example.invalid today",
+   "output": "Write to [REDACTED:EMAIL] today",
+   "replacements": 1
+  },
+  {
+   "id": "R02",
+   "input": "see https://example.invalid/a?b=1 for details",
+   "output": "see [REDACTED:URL] for details",
+   "replacements": 1
+  },
+  {
+   "id": "R03",
+   "input": "key demo-token-A1b2C3d4E5f6G7h8I9j0 ends",
+   "output": "key [REDACTED:TOKEN] ends",
+   "replacements": 1
+  },
+  {
+   "id": "R04",
+   "input": "call 0044 7700 900123 now",
+   "output": "call [REDACTED:NUMBER] now",
+   "replacements": 1
+  },
+  {
+   "id": "R05",
+   "input": "order 7731, 500 flyers at 0.42, room 2.14",
+   "output": "order 7731, 500 flyers at 0.42, room 2.14",
+   "replacements": 0
+  },
+  {
+   "id": "R06",
+   "input": "Refunds above 200 must be approved by Marta",
+   "output": "Refunds above 200 must be approved by Marta",
+   "replacements": 0
+  },
+  {
+   "id": "R07",
+   "input": "a@b.co and c@d.org",
+   "output": "[REDACTED:EMAIL] and [REDACTED:EMAIL]",
+   "replacements": 2
+  },
+  {
+   "id": "R08",
+   "input": "twentyfourletterswithoutdigitsatall",
+   "output": "twentyfourletterswithoutdigitsatall",
+   "replacements": 0
+  },
+  {
+   "id": "R09",
+   "input": "iban GB29 0000 6016 1331 9268 19 end",
+   "output": "iban GB[REDACTED:NUMBER] end",
+   "replacements": 1
+  },
+  {
+   "id": "R10",
+   "input": "\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669\u0660 stays",
+   "output": "\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669\u0660 stays",
+   "replacements": 0
+  }
+ ]
+}

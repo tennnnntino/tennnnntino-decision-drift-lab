@@ -1,0 +1,3254 @@
+{
+ "contract": "purple-team-v1.4.1",
+ "note": "Synthetic RED probes against both evaluators. 'case_json' is JSON text so that large integers reach each runtime unaltered. 'observed_v1_3' and 'observed_v1_4' were recorded by running the same probes against the unmodified V1.3 and V1.4 packages. 'expected' is enforced by the tests in both runtimes, which must agree exactly. Error messages differ between runtimes, so a rejection is recorded as rejected=true.",
+ "observed": {
+  "v1_3_run_utc": "2026-11-12T01:47:55+00:00",
+  "v1_4_run_utc": "2026-11-12T01:47:56+00:00",
+  "v1_4_1_run_utc": "2026-11-12T01:47:58+00:00",
+  "python_hash_seed_variation_p17": {
+   "v1_3": {
+    "seeds_tried": 12,
+    "distinct_finding_orders": 12,
+    "distinct_report_digests": 12
+   },
+   "v1_4": {
+    "seeds_tried": 12,
+    "distinct_finding_orders": 12,
+    "distinct_report_digests": 12
+   },
+   "v1_4_1": {
+    "seeds_tried": 12,
+    "distinct_finding_orders": 1,
+    "distinct_report_digests": 1
+   }
+  },
+  "caveat": "Wall-clock times from automated working sessions on one machine; not a team repair-time metric."
+ },
+ "vectors": [
+  {
+   "id": "P01",
+   "name": "P01_bool_vs_int",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-TYPE-1",
+   "title": "Python treated the number 1 and the boolean true as the same value",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"requires_review\": true, \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"requires_review\": 1, \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "DECISIONS_ALTERED"
+    ],
+    "findings_in_order": [
+     "DECISIONS_ALTERED:D1"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 0.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P02",
+   "name": "P02_zero_vs_false",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-TYPE-1",
+   "title": "Python treated 0 and false as the same value",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"confirmed\": false, \"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"confirmed\": 0, \"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "FACTS_ALTERED"
+    ],
+    "findings_in_order": [
+     "FACTS_ALTERED:F1"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [
+     "F1"
+    ],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P03",
+   "name": "P03_unscoped_approval",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-APPROVAL-1",
+   "title": "An approval naming no scope and no action allowed an external send in simulation",
+   "case_json": "{\"action\": {\"human_approval\": {\"actor_type\": \"HUMAN\", \"approved\": true}, \"name\": \"send-external-email\", \"requires_human\": true, \"scope\": \"external\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "BLOCK_IN_SIMULATION",
+     "reasons": [
+      "APPROVAL_SCOPE_UNSPECIFIED",
+      "APPROVAL_ACTION_UNSPECIFIED"
+     ],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "BLOCK_IN_SIMULATION",
+     "reasons": [
+      "APPROVAL_SCOPE_UNSPECIFIED",
+      "APPROVAL_ACTION_UNSPECIFIED"
+     ],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [],
+    "findings_in_order": [],
+    "gate": "BLOCK_IN_SIMULATION",
+    "reasons": [
+     "APPROVAL_SCOPE_UNSPECIFIED",
+     "APPROVAL_ACTION_UNSPECIFIED"
+    ],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P04",
+   "name": "P04_array_as_state",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-INPUT-1",
+   "title": "Browser engine returned PASS for arrays in place of the source and handoff objects",
+   "case_json": "{\"action\": {\"requires_human\": false}, \"case_id\": \"red-probe\", \"handoff\": [], \"source\": []}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": null,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "rejected": true
+   }
+  },
+  {
+   "id": "P05",
+   "name": "P05_array_as_action",
+   "class": "PARITY",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-INPUT-1",
+   "title": "Browser engine evaluated an array as the action; Python rejected it",
+   "case_json": "{\"action\": [], \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "BLOCK_IN_SIMULATION",
+     "reasons": [
+      "NO_SYNTHETIC_HUMAN_APPROVAL"
+     ],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "rejected": true
+   }
+  },
+  {
+   "id": "P06",
+   "name": "P06_requires_human_disabled",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-POLICY-1",
+   "title": "The case switched its own human-approval requirement off",
+   "case_json": "{\"action\": {\"name\": \"send-external-email\", \"requires_human\": false, \"scope\": \"external\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [],
+    "findings_in_order": [],
+    "gate": "BLOCK_IN_SIMULATION",
+    "reasons": [
+     "NO_SYNTHETIC_HUMAN_APPROVAL",
+     "CASE_WAIVER_IGNORED"
+    ],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P07",
+   "name": "P07_unsafe_integer",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-NUM-1",
+   "title": "Browser engine could not see a one-unit change above 2^53; such numbers are rejected",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"amount_cents\": 9007199254740992, \"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"amount_cents\": 9007199254740993, \"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "rejected": true
+   }
+  },
+  {
+   "id": "P08",
+   "name": "P08_benign_paraphrase",
+   "class": "FALSE_POSITIVE",
+   "status": "OPEN_LIMITATION",
+   "rule": "R-EXACT-2",
+   "title": "A faithful rewording is reported as an altered decision; a lexical profile is attached, the verdict is unchanged",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Prepare a draft only; do not send it unless a human approves\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "DECISIONS_ALTERED"
+    ],
+    "findings_in_order": [
+     "DECISIONS_ALTERED:D1"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 0.0,
+    "change_order": [],
+    "text_profiles": [
+     {
+      "formatting_only": false,
+      "source_tokens": 7,
+      "handoff_tokens": 11,
+      "shared_tokens": 4,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "P09",
+   "name": "P09_nfc_vs_nfd",
+   "class": "FALSE_POSITIVE",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-NFC-1",
+   "title": "The same visible text in two Unicode normal forms was reported as altered",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Cafe\\u0301 booking is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Caf\\u00e9 booking is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "PASS",
+    "findings": [],
+    "findings_in_order": [],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [
+     "UNICODE_NORMALIZATION_ONLY"
+    ],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P10",
+   "name": "P10_status_spelling",
+   "class": "MISSED_SIGNAL",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-STATUS-1",
+   "title": "A revoked decision returning as 'active' (lower case) failed without the reactivation signal",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"active\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"REVOKED\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "DECISIONS_ALTERED",
+     "REACTIVATED_DECISION"
+    ],
+    "findings_in_order": [
+     "DECISIONS_ALTERED:D1",
+     "REACTIVATED_DECISION:D1"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [
+     "NONCANONICAL_STATUS"
+    ],
+    "ledger": [
+     [
+      "D1",
+      "REACTIVATED"
+     ]
+    ],
+    "decision_exact_recall": 0.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P11",
+   "name": "P11_int_vs_float",
+   "class": "CONTROL",
+   "status": "CONTROL",
+   "rule": "R-TYPE-1",
+   "title": "1 and 1.0 are the same JSON number and stay equal",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"count\": 1.0, \"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"count\": 1, \"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "PASS",
+    "findings": [],
+    "findings_in_order": [],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P12",
+   "name": "P12_null_facts",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-INPUT-1",
+   "title": "Browser engine read an explicit null list as empty and returned PASS",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": null}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": null}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "rejected": true
+   }
+  },
+  {
+   "id": "P13",
+   "name": "P13_null_action",
+   "class": "PARITY",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-INPUT-1",
+   "title": "Browser engine read an explicit null action as an empty one",
+   "case_json": "{\"action\": null, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "BLOCK_IN_SIMULATION",
+     "reasons": [
+      "NO_SYNTHETIC_HUMAN_APPROVAL"
+     ],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "rejected": true
+   }
+  },
+  {
+   "id": "P14",
+   "name": "P14_null_requires_human",
+   "class": "PARITY",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-INPUT-1",
+   "title": "Browser engine read an explicit null requirement as the default",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": null, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": true
+    },
+    "javascript": {
+     "rejected": true
+    }
+   },
+   "expected": {
+    "rejected": true
+   }
+  },
+  {
+   "id": "P15",
+   "name": "P15_approval_without_action",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4",
+   "rule": "R-APPROVAL-1",
+   "title": "An approval naming a scope but no action allowed the action in simulation",
+   "case_json": "{\"action\": {\"human_approval\": {\"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"external\"}, \"name\": \"send-external-email\", \"requires_human\": true, \"scope\": \"external\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "BLOCK_IN_SIMULATION",
+     "reasons": [
+      "APPROVAL_ACTION_UNSPECIFIED"
+     ],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "BLOCK_IN_SIMULATION",
+     "reasons": [
+      "APPROVAL_ACTION_UNSPECIFIED"
+     ],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [],
+    "findings_in_order": [],
+    "gate": "BLOCK_IN_SIMULATION",
+    "reasons": [
+     "APPROVAL_ACTION_UNSPECIFIED"
+    ],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P16",
+   "name": "P16_rounding_tie",
+   "class": "PARITY",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-ORDER-1",
+   "title": "A metric exactly halfway between two four-decimal values rounded differently in Python and JavaScript",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D01\", \"status\": \"ACTIVE\", \"text\": \"rule 1\"}, {\"authority\": \"OWNER\", \"id\": \"D02\", \"status\": \"ACTIVE\", \"text\": \"rule 2 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D03\", \"status\": \"ACTIVE\", \"text\": \"rule 3 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D04\", \"status\": \"ACTIVE\", \"text\": \"rule 4 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D05\", \"status\": \"ACTIVE\", \"text\": \"rule 5 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D06\", \"status\": \"ACTIVE\", \"text\": \"rule 6 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D07\", \"status\": \"ACTIVE\", \"text\": \"rule 7 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D08\", \"status\": \"ACTIVE\", \"text\": \"rule 8 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D09\", \"status\": \"ACTIVE\", \"text\": \"rule 9 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D10\", \"status\": \"ACTIVE\", \"text\": \"rule 10 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D11\", \"status\": \"ACTIVE\", \"text\": \"rule 11 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D12\", \"status\": \"ACTIVE\", \"text\": \"rule 12 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D13\", \"status\": \"ACTIVE\", \"text\": \"rule 13 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D14\", \"status\": \"ACTIVE\", \"text\": \"rule 14 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D15\", \"status\": \"ACTIVE\", \"text\": \"rule 15 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D16\", \"status\": \"ACTIVE\", \"text\": \"rule 16 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D17\", \"status\": \"ACTIVE\", \"text\": \"rule 17 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D18\", \"status\": \"ACTIVE\", \"text\": \"rule 18 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D19\", \"status\": \"ACTIVE\", \"text\": \"rule 19 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D20\", \"status\": \"ACTIVE\", \"text\": \"rule 20 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D21\", \"status\": \"ACTIVE\", \"text\": \"rule 21 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D22\", \"status\": \"ACTIVE\", \"text\": \"rule 22 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D23\", \"status\": \"ACTIVE\", \"text\": \"rule 23 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D24\", \"status\": \"ACTIVE\", \"text\": \"rule 24 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D25\", \"status\": \"ACTIVE\", \"text\": \"rule 25 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D26\", \"status\": \"ACTIVE\", \"text\": \"rule 26 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D27\", \"status\": \"ACTIVE\", \"text\": \"rule 27 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D28\", \"status\": \"ACTIVE\", \"text\": \"rule 28 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D29\", \"status\": \"ACTIVE\", \"text\": \"rule 29 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D30\", \"status\": \"ACTIVE\", \"text\": \"rule 30 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D31\", \"status\": \"ACTIVE\", \"text\": \"rule 31 (edited)\"}, {\"authority\": \"OWNER\", \"id\": \"D32\", \"status\": \"ACTIVE\", \"text\": \"rule 32 (edited)\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D01\", \"status\": \"ACTIVE\", \"text\": \"rule 1\"}, {\"authority\": \"OWNER\", \"id\": \"D02\", \"status\": \"ACTIVE\", \"text\": \"rule 2\"}, {\"authority\": \"OWNER\", \"id\": \"D03\", \"status\": \"ACTIVE\", \"text\": \"rule 3\"}, {\"authority\": \"OWNER\", \"id\": \"D04\", \"status\": \"ACTIVE\", \"text\": \"rule 4\"}, {\"authority\": \"OWNER\", \"id\": \"D05\", \"status\": \"ACTIVE\", \"text\": \"rule 5\"}, {\"authority\": \"OWNER\", \"id\": \"D06\", \"status\": \"ACTIVE\", \"text\": \"rule 6\"}, {\"authority\": \"OWNER\", \"id\": \"D07\", \"status\": \"ACTIVE\", \"text\": \"rule 7\"}, {\"authority\": \"OWNER\", \"id\": \"D08\", \"status\": \"ACTIVE\", \"text\": \"rule 8\"}, {\"authority\": \"OWNER\", \"id\": \"D09\", \"status\": \"ACTIVE\", \"text\": \"rule 9\"}, {\"authority\": \"OWNER\", \"id\": \"D10\", \"status\": \"ACTIVE\", \"text\": \"rule 10\"}, {\"authority\": \"OWNER\", \"id\": \"D11\", \"status\": \"ACTIVE\", \"text\": \"rule 11\"}, {\"authority\": \"OWNER\", \"id\": \"D12\", \"status\": \"ACTIVE\", \"text\": \"rule 12\"}, {\"authority\": \"OWNER\", \"id\": \"D13\", \"status\": \"ACTIVE\", \"text\": \"rule 13\"}, {\"authority\": \"OWNER\", \"id\": \"D14\", \"status\": \"ACTIVE\", \"text\": \"rule 14\"}, {\"authority\": \"OWNER\", \"id\": \"D15\", \"status\": \"ACTIVE\", \"text\": \"rule 15\"}, {\"authority\": \"OWNER\", \"id\": \"D16\", \"status\": \"ACTIVE\", \"text\": \"rule 16\"}, {\"authority\": \"OWNER\", \"id\": \"D17\", \"status\": \"ACTIVE\", \"text\": \"rule 17\"}, {\"authority\": \"OWNER\", \"id\": \"D18\", \"status\": \"ACTIVE\", \"text\": \"rule 18\"}, {\"authority\": \"OWNER\", \"id\": \"D19\", \"status\": \"ACTIVE\", \"text\": \"rule 19\"}, {\"authority\": \"OWNER\", \"id\": \"D20\", \"status\": \"ACTIVE\", \"text\": \"rule 20\"}, {\"authority\": \"OWNER\", \"id\": \"D21\", \"status\": \"ACTIVE\", \"text\": \"rule 21\"}, {\"authority\": \"OWNER\", \"id\": \"D22\", \"status\": \"ACTIVE\", \"text\": \"rule 22\"}, {\"authority\": \"OWNER\", \"id\": \"D23\", \"status\": \"ACTIVE\", \"text\": \"rule 23\"}, {\"authority\": \"OWNER\", \"id\": \"D24\", \"status\": \"ACTIVE\", \"text\": \"rule 24\"}, {\"authority\": \"OWNER\", \"id\": \"D25\", \"status\": \"ACTIVE\", \"text\": \"rule 25\"}, {\"authority\": \"OWNER\", \"id\": \"D26\", \"status\": \"ACTIVE\", \"text\": \"rule 26\"}, {\"authority\": \"OWNER\", \"id\": \"D27\", \"status\": \"ACTIVE\", \"text\": \"rule 27\"}, {\"authority\": \"OWNER\", \"id\": \"D28\", \"status\": \"ACTIVE\", \"text\": \"rule 28\"}, {\"authority\": \"OWNER\", \"id\": \"D29\", \"status\": \"ACTIVE\", \"text\": \"rule 29\"}, {\"authority\": \"OWNER\", \"id\": \"D30\", \"status\": \"ACTIVE\", \"text\": \"rule 30\"}, {\"authority\": \"OWNER\", \"id\": \"D31\", \"status\": \"ACTIVE\", \"text\": \"rule 31\"}, {\"authority\": \"OWNER\", \"id\": \"D32\", \"status\": \"ACTIVE\", \"text\": \"rule 32\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D02",
+      "DECISIONS_ALTERED:D03",
+      "DECISIONS_ALTERED:D04",
+      "DECISIONS_ALTERED:D05",
+      "DECISIONS_ALTERED:D06",
+      "DECISIONS_ALTERED:D07",
+      "DECISIONS_ALTERED:D08",
+      "DECISIONS_ALTERED:D09",
+      "DECISIONS_ALTERED:D10",
+      "DECISIONS_ALTERED:D11",
+      "DECISIONS_ALTERED:D12",
+      "DECISIONS_ALTERED:D13",
+      "DECISIONS_ALTERED:D14",
+      "DECISIONS_ALTERED:D15",
+      "DECISIONS_ALTERED:D16",
+      "DECISIONS_ALTERED:D17",
+      "DECISIONS_ALTERED:D18",
+      "DECISIONS_ALTERED:D19",
+      "DECISIONS_ALTERED:D20",
+      "DECISIONS_ALTERED:D21",
+      "DECISIONS_ALTERED:D22",
+      "DECISIONS_ALTERED:D23",
+      "DECISIONS_ALTERED:D24",
+      "DECISIONS_ALTERED:D25",
+      "DECISIONS_ALTERED:D26",
+      "DECISIONS_ALTERED:D27",
+      "DECISIONS_ALTERED:D28",
+      "DECISIONS_ALTERED:D29",
+      "DECISIONS_ALTERED:D30",
+      "DECISIONS_ALTERED:D31",
+      "DECISIONS_ALTERED:D32"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0312,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D02",
+      "DECISIONS_ALTERED:D03",
+      "DECISIONS_ALTERED:D04",
+      "DECISIONS_ALTERED:D05",
+      "DECISIONS_ALTERED:D06",
+      "DECISIONS_ALTERED:D07",
+      "DECISIONS_ALTERED:D08",
+      "DECISIONS_ALTERED:D09",
+      "DECISIONS_ALTERED:D10",
+      "DECISIONS_ALTERED:D11",
+      "DECISIONS_ALTERED:D12",
+      "DECISIONS_ALTERED:D13",
+      "DECISIONS_ALTERED:D14",
+      "DECISIONS_ALTERED:D15",
+      "DECISIONS_ALTERED:D16",
+      "DECISIONS_ALTERED:D17",
+      "DECISIONS_ALTERED:D18",
+      "DECISIONS_ALTERED:D19",
+      "DECISIONS_ALTERED:D20",
+      "DECISIONS_ALTERED:D21",
+      "DECISIONS_ALTERED:D22",
+      "DECISIONS_ALTERED:D23",
+      "DECISIONS_ALTERED:D24",
+      "DECISIONS_ALTERED:D25",
+      "DECISIONS_ALTERED:D26",
+      "DECISIONS_ALTERED:D27",
+      "DECISIONS_ALTERED:D28",
+      "DECISIONS_ALTERED:D29",
+      "DECISIONS_ALTERED:D30",
+      "DECISIONS_ALTERED:D31",
+      "DECISIONS_ALTERED:D32"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0313,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D02",
+      "DECISIONS_ALTERED:D03",
+      "DECISIONS_ALTERED:D04",
+      "DECISIONS_ALTERED:D05",
+      "DECISIONS_ALTERED:D06",
+      "DECISIONS_ALTERED:D07",
+      "DECISIONS_ALTERED:D08",
+      "DECISIONS_ALTERED:D09",
+      "DECISIONS_ALTERED:D10",
+      "DECISIONS_ALTERED:D11",
+      "DECISIONS_ALTERED:D12",
+      "DECISIONS_ALTERED:D13",
+      "DECISIONS_ALTERED:D14",
+      "DECISIONS_ALTERED:D15",
+      "DECISIONS_ALTERED:D16",
+      "DECISIONS_ALTERED:D17",
+      "DECISIONS_ALTERED:D18",
+      "DECISIONS_ALTERED:D19",
+      "DECISIONS_ALTERED:D20",
+      "DECISIONS_ALTERED:D21",
+      "DECISIONS_ALTERED:D22",
+      "DECISIONS_ALTERED:D23",
+      "DECISIONS_ALTERED:D24",
+      "DECISIONS_ALTERED:D25",
+      "DECISIONS_ALTERED:D26",
+      "DECISIONS_ALTERED:D27",
+      "DECISIONS_ALTERED:D28",
+      "DECISIONS_ALTERED:D29",
+      "DECISIONS_ALTERED:D30",
+      "DECISIONS_ALTERED:D31",
+      "DECISIONS_ALTERED:D32"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0312,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED",
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D02",
+      "DECISIONS_ALTERED:D03",
+      "DECISIONS_ALTERED:D04",
+      "DECISIONS_ALTERED:D05",
+      "DECISIONS_ALTERED:D06",
+      "DECISIONS_ALTERED:D07",
+      "DECISIONS_ALTERED:D08",
+      "DECISIONS_ALTERED:D09",
+      "DECISIONS_ALTERED:D10",
+      "DECISIONS_ALTERED:D11",
+      "DECISIONS_ALTERED:D12",
+      "DECISIONS_ALTERED:D13",
+      "DECISIONS_ALTERED:D14",
+      "DECISIONS_ALTERED:D15",
+      "DECISIONS_ALTERED:D16",
+      "DECISIONS_ALTERED:D17",
+      "DECISIONS_ALTERED:D18",
+      "DECISIONS_ALTERED:D19",
+      "DECISIONS_ALTERED:D20",
+      "DECISIONS_ALTERED:D21",
+      "DECISIONS_ALTERED:D22",
+      "DECISIONS_ALTERED:D23",
+      "DECISIONS_ALTERED:D24",
+      "DECISIONS_ALTERED:D25",
+      "DECISIONS_ALTERED:D26",
+      "DECISIONS_ALTERED:D27",
+      "DECISIONS_ALTERED:D28",
+      "DECISIONS_ALTERED:D29",
+      "DECISIONS_ALTERED:D30",
+      "DECISIONS_ALTERED:D31",
+      "DECISIONS_ALTERED:D32"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0313,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED",
+     "DECISIONS_ALTERED"
+    ],
+    "findings_in_order": [
+     "DECISIONS_ALTERED:D02",
+     "DECISIONS_ALTERED:D03",
+     "DECISIONS_ALTERED:D04",
+     "DECISIONS_ALTERED:D05",
+     "DECISIONS_ALTERED:D06",
+     "DECISIONS_ALTERED:D07",
+     "DECISIONS_ALTERED:D08",
+     "DECISIONS_ALTERED:D09",
+     "DECISIONS_ALTERED:D10",
+     "DECISIONS_ALTERED:D11",
+     "DECISIONS_ALTERED:D12",
+     "DECISIONS_ALTERED:D13",
+     "DECISIONS_ALTERED:D14",
+     "DECISIONS_ALTERED:D15",
+     "DECISIONS_ALTERED:D16",
+     "DECISIONS_ALTERED:D17",
+     "DECISIONS_ALTERED:D18",
+     "DECISIONS_ALTERED:D19",
+     "DECISIONS_ALTERED:D20",
+     "DECISIONS_ALTERED:D21",
+     "DECISIONS_ALTERED:D22",
+     "DECISIONS_ALTERED:D23",
+     "DECISIONS_ALTERED:D24",
+     "DECISIONS_ALTERED:D25",
+     "DECISIONS_ALTERED:D26",
+     "DECISIONS_ALTERED:D27",
+     "DECISIONS_ALTERED:D28",
+     "DECISIONS_ALTERED:D29",
+     "DECISIONS_ALTERED:D30",
+     "DECISIONS_ALTERED:D31",
+     "DECISIONS_ALTERED:D32"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 0.0313,
+    "change_order": [],
+    "text_profiles": [
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 3,
+      "shared_tokens": 2,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "P17",
+   "name": "P17_finding_order",
+   "class": "DETERMINISM",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-ORDER-1",
+   "title": "With several status findings, Python's report order and digest depended on the process hash seed",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"id\": \"F7\", \"status\": \"FACT\", \"text\": \"estimate 7\"}, {\"id\": \"F3\", \"status\": \"FACT\", \"text\": \"estimate 3\"}, {\"id\": \"F9\", \"status\": \"FACT\", \"text\": \"estimate 9\"}, {\"id\": \"F1\", \"status\": \"FACT\", \"text\": \"estimate 1\"}, {\"id\": \"F5\", \"status\": \"FACT\", \"text\": \"estimate 5\"}, {\"id\": \"F8\", \"status\": \"FACT\", \"text\": \"estimate 8\"}, {\"id\": \"F2\", \"status\": \"FACT\", \"text\": \"estimate 2\"}, {\"id\": \"F6\", \"status\": \"FACT\", \"text\": \"estimate 6\"}, {\"id\": \"F4\", \"status\": \"FACT\", \"text\": \"estimate 4\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"id\": \"F7\", \"status\": \"TO_CONFIRM\", \"text\": \"estimate 7\"}, {\"id\": \"F3\", \"status\": \"TO_CONFIRM\", \"text\": \"estimate 3\"}, {\"id\": \"F9\", \"status\": \"TO_CONFIRM\", \"text\": \"estimate 9\"}, {\"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"estimate 1\"}, {\"id\": \"F5\", \"status\": \"TO_CONFIRM\", \"text\": \"estimate 5\"}, {\"id\": \"F8\", \"status\": \"TO_CONFIRM\", \"text\": \"estimate 8\"}, {\"id\": \"F2\", \"status\": \"TO_CONFIRM\", \"text\": \"estimate 2\"}, {\"id\": \"F6\", \"status\": \"TO_CONFIRM\", \"text\": \"estimate 6\"}, {\"id\": \"F4\", \"status\": \"TO_CONFIRM\", \"text\": \"estimate 4\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1",
+      "FACTS_ALTERED:F2",
+      "FACTS_ALTERED:F3",
+      "FACTS_ALTERED:F4",
+      "FACTS_ALTERED:F5",
+      "FACTS_ALTERED:F6",
+      "FACTS_ALTERED:F7",
+      "FACTS_ALTERED:F8",
+      "FACTS_ALTERED:F9",
+      "UNSUPPORTED_FACT_PROMOTION:F2",
+      "UNSUPPORTED_FACT_PROMOTION:F9",
+      "UNSUPPORTED_FACT_PROMOTION:F3",
+      "UNSUPPORTED_FACT_PROMOTION:F8",
+      "UNSUPPORTED_FACT_PROMOTION:F7",
+      "UNSUPPORTED_FACT_PROMOTION:F5",
+      "UNSUPPORTED_FACT_PROMOTION:F6",
+      "UNSUPPORTED_FACT_PROMOTION:F1",
+      "UNSUPPORTED_FACT_PROMOTION:F4"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8",
+      "F9"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1",
+      "FACTS_ALTERED:F2",
+      "FACTS_ALTERED:F3",
+      "FACTS_ALTERED:F4",
+      "FACTS_ALTERED:F5",
+      "FACTS_ALTERED:F6",
+      "FACTS_ALTERED:F7",
+      "FACTS_ALTERED:F8",
+      "FACTS_ALTERED:F9",
+      "UNSUPPORTED_FACT_PROMOTION:F7",
+      "UNSUPPORTED_FACT_PROMOTION:F3",
+      "UNSUPPORTED_FACT_PROMOTION:F9",
+      "UNSUPPORTED_FACT_PROMOTION:F1",
+      "UNSUPPORTED_FACT_PROMOTION:F5",
+      "UNSUPPORTED_FACT_PROMOTION:F8",
+      "UNSUPPORTED_FACT_PROMOTION:F2",
+      "UNSUPPORTED_FACT_PROMOTION:F6",
+      "UNSUPPORTED_FACT_PROMOTION:F4"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8",
+      "F9"
+     ],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1",
+      "FACTS_ALTERED:F2",
+      "FACTS_ALTERED:F3",
+      "FACTS_ALTERED:F4",
+      "FACTS_ALTERED:F5",
+      "FACTS_ALTERED:F6",
+      "FACTS_ALTERED:F7",
+      "FACTS_ALTERED:F8",
+      "FACTS_ALTERED:F9",
+      "UNSUPPORTED_FACT_PROMOTION:F2",
+      "UNSUPPORTED_FACT_PROMOTION:F3",
+      "UNSUPPORTED_FACT_PROMOTION:F6",
+      "UNSUPPORTED_FACT_PROMOTION:F9",
+      "UNSUPPORTED_FACT_PROMOTION:F8",
+      "UNSUPPORTED_FACT_PROMOTION:F7",
+      "UNSUPPORTED_FACT_PROMOTION:F5",
+      "UNSUPPORTED_FACT_PROMOTION:F4",
+      "UNSUPPORTED_FACT_PROMOTION:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8",
+      "F9"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "FACTS_ALTERED",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION",
+      "UNSUPPORTED_FACT_PROMOTION"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1",
+      "FACTS_ALTERED:F2",
+      "FACTS_ALTERED:F3",
+      "FACTS_ALTERED:F4",
+      "FACTS_ALTERED:F5",
+      "FACTS_ALTERED:F6",
+      "FACTS_ALTERED:F7",
+      "FACTS_ALTERED:F8",
+      "FACTS_ALTERED:F9",
+      "UNSUPPORTED_FACT_PROMOTION:F7",
+      "UNSUPPORTED_FACT_PROMOTION:F3",
+      "UNSUPPORTED_FACT_PROMOTION:F9",
+      "UNSUPPORTED_FACT_PROMOTION:F1",
+      "UNSUPPORTED_FACT_PROMOTION:F5",
+      "UNSUPPORTED_FACT_PROMOTION:F8",
+      "UNSUPPORTED_FACT_PROMOTION:F2",
+      "UNSUPPORTED_FACT_PROMOTION:F6",
+      "UNSUPPORTED_FACT_PROMOTION:F4"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8",
+      "F9"
+     ],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "FACTS_ALTERED",
+     "FACTS_ALTERED",
+     "FACTS_ALTERED",
+     "FACTS_ALTERED",
+     "FACTS_ALTERED",
+     "FACTS_ALTERED",
+     "FACTS_ALTERED",
+     "FACTS_ALTERED",
+     "FACTS_ALTERED",
+     "UNSUPPORTED_FACT_PROMOTION",
+     "UNSUPPORTED_FACT_PROMOTION",
+     "UNSUPPORTED_FACT_PROMOTION",
+     "UNSUPPORTED_FACT_PROMOTION",
+     "UNSUPPORTED_FACT_PROMOTION",
+     "UNSUPPORTED_FACT_PROMOTION",
+     "UNSUPPORTED_FACT_PROMOTION",
+     "UNSUPPORTED_FACT_PROMOTION",
+     "UNSUPPORTED_FACT_PROMOTION"
+    ],
+    "findings_in_order": [
+     "FACTS_ALTERED:F1",
+     "FACTS_ALTERED:F2",
+     "FACTS_ALTERED:F3",
+     "FACTS_ALTERED:F4",
+     "FACTS_ALTERED:F5",
+     "FACTS_ALTERED:F6",
+     "FACTS_ALTERED:F7",
+     "FACTS_ALTERED:F8",
+     "FACTS_ALTERED:F9",
+     "UNSUPPORTED_FACT_PROMOTION:F1",
+     "UNSUPPORTED_FACT_PROMOTION:F2",
+     "UNSUPPORTED_FACT_PROMOTION:F3",
+     "UNSUPPORTED_FACT_PROMOTION:F4",
+     "UNSUPPORTED_FACT_PROMOTION:F5",
+     "UNSUPPORTED_FACT_PROMOTION:F6",
+     "UNSUPPORTED_FACT_PROMOTION:F7",
+     "UNSUPPORTED_FACT_PROMOTION:F8",
+     "UNSUPPORTED_FACT_PROMOTION:F9"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [
+     "F1",
+     "F2",
+     "F3",
+     "F4",
+     "F5",
+     "F6",
+     "F7",
+     "F8",
+     "F9"
+    ],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P18",
+   "name": "P18_policy_inside_case",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-POLICY-1",
+   "title": "The case carried its own policy-like fields and a waiver; both are ignored and flagged",
+   "case_json": "{\"action\": {\"name\": \"send-external-email\", \"policy\": {\"default\": \"NO_APPROVAL_REQUIRED\"}, \"requires_human\": false, \"scope\": \"external\"}, \"authorization_policy\": {\"exempt_actions\": [{\"name\": \"send-external-email\", \"scope\": \"external\"}]}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [],
+    "findings_in_order": [],
+    "gate": "BLOCK_IN_SIMULATION",
+    "reasons": [
+     "NO_SYNTHETIC_HUMAN_APPROVAL",
+     "CASE_WAIVER_IGNORED"
+    ],
+    "advisories": [
+     "CASE_POLICY_FIELD_IGNORED"
+    ],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P19",
+   "name": "P19_exempt_action_claim",
+   "class": "FALSE_NEGATIVE",
+   "status": "OPEN_LIMITATION",
+   "rule": "R-POLICY-2",
+   "title": "The case names itself as an exempt low-risk action although its decision demands approval",
+   "case_json": "{\"action\": {\"name\": \"prepare-draft\", \"requires_human\": false, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "PASS",
+     "findings": [],
+     "findings_in_order": [],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "PASS",
+    "findings": [],
+    "findings_in_order": [],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P20",
+   "name": "P20_revoked_not_carried",
+   "class": "MISSED_SIGNAL",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-REVOKED-2",
+   "title": "A revoked decision that is simply not carried left no specific signal and no trace",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}, {\"authority\": \"OWNER\", \"id\": \"D2\", \"status\": \"REVOKED\", \"text\": \"Send the reminder to everyone\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_MISSING"
+     ],
+     "findings_in_order": [
+      "DECISIONS_MISSING:D2"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.5,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_MISSING"
+     ],
+     "findings_in_order": [
+      "DECISIONS_MISSING:D2"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.5,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_MISSING"
+     ],
+     "findings_in_order": [
+      "DECISIONS_MISSING:D2"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.5,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_MISSING"
+     ],
+     "findings_in_order": [
+      "DECISIONS_MISSING:D2"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.5,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "DECISIONS_MISSING",
+     "REVOKED_DECISION_TRACE_LOST"
+    ],
+    "findings_in_order": [
+     "DECISIONS_MISSING:D2",
+     "REVOKED_DECISION_TRACE_LOST:D2"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [
+     [
+      "D2",
+      "NOT_CARRIED"
+     ]
+    ],
+    "decision_exact_recall": 0.5,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P21",
+   "name": "P21_status_alias",
+   "class": "MISSED_SIGNAL",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-STATUS-1",
+   "title": "A revoked decision returning under an alias with stray case and whitespace was not recognised as reactivated",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"Enabled\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"revoked \", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "DECISIONS_ALTERED",
+     "REACTIVATED_DECISION"
+    ],
+    "findings_in_order": [
+     "DECISIONS_ALTERED:D1",
+     "REACTIVATED_DECISION:D1"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [
+     "NONCANONICAL_STATUS"
+    ],
+    "ledger": [
+     [
+      "D1",
+      "REACTIVATED"
+     ]
+    ],
+    "decision_exact_recall": 0.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P22",
+   "name": "P22_identifier_normal_form",
+   "class": "FALSE_POSITIVE",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-NFC-1",
+   "title": "One identifier in two Unicode normal forms was reported as one missing and one introduced item",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F-cafe\\u0301\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F-caf\\u00e9\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_INTRODUCED",
+      "FACTS_MISSING"
+     ],
+     "findings_in_order": [
+      "FACTS_MISSING:F-caf\u00e9",
+      "FACTS_INTRODUCED:F-cafe\u0301"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_INTRODUCED",
+      "FACTS_MISSING"
+     ],
+     "findings_in_order": [
+      "FACTS_MISSING:F-caf\u00e9",
+      "FACTS_INTRODUCED:F-cafe\u0301"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_INTRODUCED",
+      "FACTS_MISSING"
+     ],
+     "findings_in_order": [
+      "FACTS_MISSING:F-caf\u00e9",
+      "FACTS_INTRODUCED:F-cafe\u0301"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_INTRODUCED",
+      "FACTS_MISSING"
+     ],
+     "findings_in_order": [
+      "FACTS_MISSING:F-caf\u00e9",
+      "FACTS_INTRODUCED:F-cafe\u0301"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "PASS",
+    "findings": [],
+    "findings_in_order": [],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [
+     "UNICODE_NORMALIZATION_ONLY"
+    ],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P23",
+   "name": "P23_revoked_to_unknown_status",
+   "class": "MISSED_SIGNAL",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-STATUS-1",
+   "title": "A revoked decision returning with an unknown status left no specific signal",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"archived\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"REVOKED\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "DECISIONS_ALTERED",
+     "REVOKED_STATUS_CHANGED"
+    ],
+    "findings_in_order": [
+     "DECISIONS_ALTERED:D1",
+     "REVOKED_STATUS_CHANGED:D1"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [
+     [
+      "D1",
+      "STATUS_CHANGED"
+     ]
+    ],
+    "decision_exact_recall": 0.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P24",
+   "name": "P24_compatibility_characters",
+   "class": "CONTROL",
+   "status": "CONTROL",
+   "rule": "R-NFC-1",
+   "title": "Compatibility characters (full-width letters) are not canonically equivalent and stay flagged",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Status \\uff2f\\uff2b\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Status OK\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:F1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "F1"
+     ],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "FACTS_ALTERED"
+    ],
+    "findings_in_order": [
+     "FACTS_ALTERED:F1"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [
+     "F1"
+    ],
+    "text_profiles": [
+     {
+      "formatting_only": false,
+      "source_tokens": 2,
+      "handoff_tokens": 1,
+      "shared_tokens": 1,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "P25",
+   "name": "P25_negation_dropped",
+   "class": "TRIAGE",
+   "status": "HINT_ADDED_IN_V1_4_1",
+   "rule": "R-EXACT-2",
+   "title": "A rewording that drops the negation is flagged as before and now carries negation_changed",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft and send with human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "DECISIONS_ALTERED"
+    ],
+    "findings_in_order": [
+     "DECISIONS_ALTERED:D1"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 0.0,
+    "change_order": [],
+    "text_profiles": [
+     {
+      "formatting_only": false,
+      "source_tokens": 7,
+      "handoff_tokens": 6,
+      "shared_tokens": 4,
+      "negation_changed": true,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "P26",
+   "name": "P26_identifier_collision",
+   "class": "FALSE_NEGATIVE",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-NFC-1",
+   "title": "Two identifiers that collide after normalisation were accepted as different items; now rejected",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"id\": \"F-caf\\u00e9\", \"status\": \"FACT\", \"text\": \"a\"}, {\"id\": \"F-cafe\\u0301\", \"status\": \"FACT\", \"text\": \"b\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"id\": \"F-caf\\u00e9\", \"status\": \"FACT\", \"text\": \"a\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_INTRODUCED"
+     ],
+     "findings_in_order": [
+      "FACTS_INTRODUCED:F-cafe\u0301"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_INTRODUCED"
+     ],
+     "findings_in_order": [
+      "FACTS_INTRODUCED:F-cafe\u0301"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_INTRODUCED"
+     ],
+     "findings_in_order": [
+      "FACTS_INTRODUCED:F-cafe\u0301"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_INTRODUCED"
+     ],
+     "findings_in_order": [
+      "FACTS_INTRODUCED:F-cafe\u0301"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": true
+   }
+  },
+  {
+   "id": "P27",
+   "name": "P27_authority_absent_vs_null",
+   "class": "PARITY",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-TYPE-1",
+   "title": "An absent authority and an explicit null were equal in Python and different in the browser engine",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": null, \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}, \"source\": {\"decisions\": [{\"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"evidence\": \"synthetic://probe/note\", \"id\": \"F1\", \"status\": \"TO_CONFIRM\", \"text\": \"Quote is preliminary\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "AUTHORITY_CHANGED",
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1",
+      "AUTHORITY_CHANGED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0.0,
+     "change_order": [],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "AUTHORITY_CHANGED",
+      "DECISIONS_ALTERED"
+     ],
+     "findings_in_order": [
+      "DECISIONS_ALTERED:D1",
+      "AUTHORITY_CHANGED:D1"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 0,
+     "change_order": [],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "DECISIONS_ALTERED"
+    ],
+    "findings_in_order": [
+     "DECISIONS_ALTERED:D1"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 0.0,
+    "change_order": [],
+    "text_profiles": []
+   }
+  },
+  {
+   "id": "P28",
+   "name": "P28_change_list_order",
+   "class": "PARITY",
+   "status": "FIXED_IN_V1_4_1",
+   "rule": "R-ORDER-1",
+   "title": "The list of changed items was ordered by locale in the browser engine and by code point in Python",
+   "case_json": "{\"action\": {\"human_approval\": {\"action\": \"internal-draft\", \"actor_type\": \"HUMAN\", \"approved\": true, \"scope\": \"internal\"}, \"name\": \"internal-draft\", \"requires_human\": true, \"scope\": \"internal\"}, \"case_id\": \"red-probe\", \"handoff\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"id\": \"a\", \"status\": \"FACT\", \"text\": \"one!\"}, {\"id\": \"B\", \"status\": \"FACT\", \"text\": \"two!\"}]}, \"source\": {\"decisions\": [{\"authority\": \"OWNER\", \"id\": \"D1\", \"status\": \"ACTIVE\", \"text\": \"Draft only, never send without human approval\"}], \"facts\": [{\"id\": \"a\", \"status\": \"FACT\", \"text\": \"one\"}, {\"id\": \"B\", \"status\": \"FACT\", \"text\": \"two\"}]}}",
+   "observed_v1_3": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED",
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:B",
+      "FACTS_ALTERED:a"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "B",
+      "a"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED",
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:B",
+      "FACTS_ALTERED:a"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "a",
+      "B"
+     ],
+     "text_profiles": []
+    }
+   },
+   "observed_v1_4": {
+    "python": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED",
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:B",
+      "FACTS_ALTERED:a"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1.0,
+     "change_order": [
+      "B",
+      "a"
+     ],
+     "text_profiles": []
+    },
+    "javascript": {
+     "rejected": false,
+     "verdict": "FAIL",
+     "findings": [
+      "FACTS_ALTERED",
+      "FACTS_ALTERED"
+     ],
+     "findings_in_order": [
+      "FACTS_ALTERED:B",
+      "FACTS_ALTERED:a"
+     ],
+     "gate": "ALLOW_IN_SIMULATION",
+     "reasons": [],
+     "advisories": [],
+     "ledger": [],
+     "decision_exact_recall": 1,
+     "change_order": [
+      "a",
+      "B"
+     ],
+     "text_profiles": []
+    }
+   },
+   "expected": {
+    "rejected": false,
+    "verdict": "FAIL",
+    "findings": [
+     "FACTS_ALTERED",
+     "FACTS_ALTERED"
+    ],
+    "findings_in_order": [
+     "FACTS_ALTERED:B",
+     "FACTS_ALTERED:a"
+    ],
+    "gate": "ALLOW_IN_SIMULATION",
+    "reasons": [],
+    "advisories": [],
+    "ledger": [],
+    "decision_exact_recall": 1.0,
+    "change_order": [
+     "B",
+     "a"
+    ],
+    "text_profiles": [
+     {
+      "formatting_only": true,
+      "source_tokens": 1,
+      "handoff_tokens": 1,
+      "shared_tokens": 1,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     },
+     {
+      "formatting_only": true,
+      "source_tokens": 1,
+      "handoff_tokens": 1,
+      "shared_tokens": 1,
+      "negation_changed": false,
+      "numbers_changed": false,
+      "non_ascii_content": false
+     }
+    ]
+   }
+  }
+ ]
+}

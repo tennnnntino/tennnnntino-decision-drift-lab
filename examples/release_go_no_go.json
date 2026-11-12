@@ -1,0 +1,52 @@
+{
+  "case_id": "release-go-no-go",
+  "domain": "release operations",
+  "source": {
+    "facts": [
+      {
+        "id": "F8",
+        "text": "All synthetic tests succeeded",
+        "status": "FACT",
+        "evidence": "synthetic://ci"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D8",
+        "text": "Deployment requires a release owner decision",
+        "authority": "RELEASE_OWNER",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "handoff": {
+    "facts": [
+      {
+        "id": "F8",
+        "text": "All synthetic tests succeeded",
+        "status": "FACT",
+        "evidence": "synthetic://ci"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D8",
+        "text": "Deployment requires a release owner decision",
+        "authority": "RELEASE_OWNER",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "action": {
+    "name": "deploy-production",
+    "scope": "production",
+    "requires_human": true,
+    "human_approval": {
+      "approved": true,
+      "actor_type": "HUMAN",
+      "scope": "production",
+      "action": "deploy-production"
+    }
+  },
+  "expected_verdict": "PASS"
+}

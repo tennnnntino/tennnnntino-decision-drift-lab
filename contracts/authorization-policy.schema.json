@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/decision-drift-lab/authorization-policy-v1.schema.json",
+  "title": "External simulation authorization policy V1",
+  "description": "Operator-supplied policy. The only default is HUMAN_APPROVAL_REQUIRED: a policy can list exemptions, it cannot switch the requirement off globally. Never read from an analysed case.",
+  "type": "object",
+  "required": ["policy_id", "policy_version", "default", "exempt_actions"],
+  "additionalProperties": false,
+  "properties": {
+    "policy_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"},
+    "policy_version": {"const": "1.0"},
+    "default": {"const": "HUMAN_APPROVAL_REQUIRED"},
+    "exempt_actions": {
+      "type": "array", "maxItems": 50,
+      "items": {
+        "type": "object", "required": ["name", "scope", "rationale"], "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,59}$"},
+          "scope": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,39}$"},
+          "rationale": {"type": "string", "minLength": 10, "maxLength": 240}
+        }
+      }
+    },
+    "note": {"type": "string", "maxLength": 400}
+  }
+}

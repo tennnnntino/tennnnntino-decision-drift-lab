@@ -1,0 +1,81 @@
+{
+  "form": "handoff-label-form-v1",
+  "target_split": "independent-heldout",
+  "source_split": null,
+  "source_text_sha256": null,
+  "data_rights": null,
+  "labeller": {
+    "label": null,
+    "date": null,
+    "independence": {
+      "has_read_baseline_code": null,
+      "has_seen_candidate_labels": null,
+      "wrote_these_cases": null
+    }
+  },
+  "instructions": [
+    "Label alone, before looking at any candidate label, review sheet with labels, or the baseline code.",
+    "For each case list what someone would act on: decisions, constraints, facts that drive an action, open uncertainties.",
+    "Quote passages exactly as written. A quote must occur exactly once in its turn (or in the handoff note); lengthen it if needed.",
+    "kind: decision | fact. status: ACTIVE or REVOKED for decisions, FACT or TO_CONFIRM for facts.",
+    "authority: the person or role the conversation names as deciding, or null. authority_bearing: true when the item says who may approve or forbids acting without approval.",
+    "statement: the current wording. superseded: earlier wording that was corrected. revocation: the words that withdrew it. qualification: the hedge that makes a fact uncertain.",
+    "outcome: PRESERVED_VERBATIM | PRESERVED_PARAPHRASE | NOT_CARRIED_OK (revoked and simply absent) | ALTERED | OMITTED | REACTIVATED | PROMOTED | AUTHORITY_CHANGED.",
+    "handoff_quote: the passage of the note that carries, changes or contradicts the item; null for OMITTED and NOT_CARRIED_OK.",
+    "introduced: statements in the note that nothing in the conversation supports.",
+    "Fill in labeller.label (a name or pseudonym), labeller.date (YYYY-MM-DD) and all three independence answers with true or false.",
+    "Write at least 20 new fictional cases yourself. No real people, organisations, conversations or customer data.",
+    "Each case needs a case_id (letters, digits, - or _), a domain, a title, 3 to 8 turns and a handoff note.",
+    "Aim for roughly one third faithful handoffs (verbatim and paraphrased) and two thirds with a real change.",
+    "State in data_rights that the text is your own fiction and may be used in this corpus.",
+    "Replace the placeholder case below; a case_id starting with EXAMPLE is refused by the compiler."
+  ],
+  "cases": [
+    {
+      "case_id": "EXAMPLE-01",
+      "domain": "replace-me",
+      "title": "Replace me",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Name",
+          "text": "Replace with your own invented conversation."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "Replace."
+        }
+      ],
+      "handoff": "Replace with the handoff note.",
+      "items": [
+        {
+          "item_id": "D1",
+          "kind": "decision",
+          "status": "ACTIVE",
+          "authority": null,
+          "authority_bearing": false,
+          "statement": {
+            "turn": 1,
+            "quote": "Replace"
+          },
+          "superseded": [],
+          "revocation": [],
+          "qualification": [],
+          "outcome": "OMITTED",
+          "handoff_quote": null,
+          "handoff_authority": null
+        }
+      ],
+      "introduced": [
+        {
+          "item_id": "X1",
+          "kind": "fact",
+          "handoff_quote": "Replace",
+          "note": ""
+        }
+      ],
+      "note": ""
+    }
+  ]
+}

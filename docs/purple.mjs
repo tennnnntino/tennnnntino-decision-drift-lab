@@ -1,0 +1,150 @@
+/* Snapshot of local synthetic security regression tests; not a certification. */
+export const PURPLE = {
+  "date": "2026-11-11",
+  "tests": [
+    {
+      "id": "R01",
+      "attack": "Oversized file",
+      "defense": "Bound input bytes before parsing",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R02",
+      "attack": "Duplicate root JSON key",
+      "defense": "Reject ambiguous object keys",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R03",
+      "attack": "Duplicate nested JSON key",
+      "defense": "Reject ambiguous nested values",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R04",
+      "attack": "Non-finite number literal",
+      "defense": "Strict JSON numeric parser",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R05",
+      "attack": "Malformed UTF-8",
+      "defense": "Strict input decoding",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R06",
+      "attack": "Malformed JSON",
+      "defense": "Fail closed with input error",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R07",
+      "attack": "Excessive object nesting",
+      "defense": "Depth guard before serialization",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R08",
+      "attack": "Oversized structured payload",
+      "defense": "Canonical UTF-8 byte guard",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R09",
+      "attack": "Duplicate decision ID",
+      "defense": "Refuse conflicting identifiers",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R10",
+      "attack": "Simulated agent self-approval",
+      "defense": "Reject non-human actor flag",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R11",
+      "attack": "Simulated scope escalation",
+      "defense": "Match declared action scope",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R12",
+      "attack": "Simulated wrong action approval",
+      "defense": "Match declared action name",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R13",
+      "attack": "Revoked decision revival",
+      "defense": "Flag reactivation as drift",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R14",
+      "attack": "Unsupported fact promotion",
+      "defense": "Flag uncertainty-to-fact change",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R15",
+      "attack": "Authority field rewrite",
+      "defense": "Flag change of decision authority",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R16",
+      "attack": "HTML payload in evidence text",
+      "defense": "Render inputs as inert text (static check)",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R17",
+      "attack": "Edited report content",
+      "defense": "Recalculate and compare local digest",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R18",
+      "attack": "Fake authentication confidence",
+      "defense": "Explicit authenticated=false",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R19",
+      "attack": "Unexpected network exfiltration hook",
+      "defense": "Static source and CSP checks",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R20",
+      "attack": "Instruction embedded in input",
+      "defense": "Treat synthetic text as inert data",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R21",
+      "attack": "Non-finite Python number",
+      "defense": "Reject non-JSON numeric values",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R22",
+      "attack": "Known-good baseline regression",
+      "defense": "Valid fixture still PASS",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R23",
+      "attack": "Legitimate bounded CLI input",
+      "defense": "Accepted after hardening",
+      "status": "PASS_IN_LOCAL_TEST"
+    },
+    {
+      "id": "R24",
+      "attack": "Deep nesting through CLI",
+      "defense": "Gracefully refuse pathological structure",
+      "status": "PASS_IN_LOCAL_TEST"
+    }
+  ]
+};

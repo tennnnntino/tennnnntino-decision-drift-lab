@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/decision-drift-lab/handoff-corpus-v1.schema.json",
+  "title": "Synthetic unstructured handoff corpus V1.4",
+  "description": "Fictional mini-conversations with a free-text handoff note and item labels. Labels stay CANDIDATE until a human review is recorded; a recorded review is an unauthenticated text field. Spans are UTF-8 byte offsets. Enforced by ddlab/schema.py and docs/schema.mjs.",
+  "type": "object",
+  "required": ["corpus", "corpus_schema", "split", "provenance", "cases"],
+  "additionalProperties": false,
+  "properties": {
+    "corpus": {"const": "handoff-corpus-v1.4"},
+    "corpus_schema": {"const": "1.0"},
+    "split": {"enum": ["dev", "heldout", "heldout-human", "independent-heldout"]},
+    "provenance": {
+      "type": "object",
+      "required": ["authoring", "label_state", "human_review", "data_rights", "independence"],
+      "additionalProperties": false,
+      "properties": {
+        "authoring": {"type": "string", "minLength": 1, "maxLength": 200},
+        "label_state": {"type": "string", "minLength": 1, "maxLength": 200},
+        "human_review": {"type": "string", "minLength": 1, "maxLength": 200},
+        "data_rights": {"type": "string", "minLength": 1, "maxLength": 400},
+        "independence": {"type": "string", "minLength": 1, "maxLength": 400}
+      }
+    },
+    "cases": {"type": "array", "minItems": 1, "maxItems": 200, "items": {"$ref": "#/$defs/case"}}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$"},
+    "span": {
+      "type": "object",
+      "required": ["start_byte", "end_byte", "excerpt"],
+      "additionalProperties": false,
+      "properties": {
+        "start_byte": {"type": "integer", "minimum": 0, "maximum": 8192},
+        "end_byte": {"type": "integer", "minimum": 1, "maximum": 8192},
+        "excerpt": {"type": "string", "minLength": 1, "maxLength": 600}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["turn", "role", "start_byte", "end_byte", "excerpt"],
+      "additionalProperties": false,
+      "properties": {
+        "turn": {"type": "integer", "minimum": 1, "maximum": 60},
+        "role": {"enum": ["statement", "superseded", "revocation", "qualification"]},
+        "start_byte": {"type": "integer", "minimum": 0, "maximum": 8192},
+        "end_byte": {"type": "integer", "minimum": 1, "maximum": 8192},
+        "excerpt": {"type": "string", "minLength": 1, "maxLength": 600}
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": ["item_id", "kind", "source_status", "authority", "authority_bearing", "evidence", "handoff_outcome", "handoff_evidence", "handoff_authority"],
+      "additionalProperties": false,
+      "properties": {
+        "item_id": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["decision", "fact"]},
+        "source_status": {"enum": ["ACTIVE", "REVOKED", "FACT", "TO_CONFIRM"]},
+        "authority": {"type": ["string", "null"], "maxLength": 80},
+        "authority_bearing": {"type": "boolean"},
+        "evidence": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"$ref": "#/$defs/evidence"}},
+        "handoff_outcome": {"enum": ["PRESERVED_VERBATIM", "PRESERVED_PARAPHRASE", "NOT_CARRIED_OK", "ALTERED", "OMITTED", "REACTIVATED", "PROMOTED", "AUTHORITY_CHANGED"]},
+        "handoff_evidence": {"type": ["object", "null"], "required": ["start_byte", "end_byte", "excerpt"], "additionalProperties": false, "properties": {
+          "start_byte": {"type": "integer", "minimum": 0, "maximum": 8192},
+          "end_byte": {"type": "integer", "minimum": 1, "maximum": 8192},
+          "excerpt": {"type": "string", "minLength": 1, "maxLength": 600}
+        }},
+        "handoff_authority": {"type": ["string", "null"], "maxLength": 80}
+      }
+    },
+    "introduced": {
+      "type": "object",
+      "required": ["item_id", "kind", "handoff_evidence", "note"],
+      "additionalProperties": false,
+      "properties": {
+        "item_id": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["decision", "fact"]},
+        "handoff_evidence": {"$ref": "#/$defs/span"},
+        "note": {"type": "string", "maxLength": 300}
+      }
+    },
+    "case": {
+      "type": "object",
+      "required": ["case_id", "domain", "title", "source", "handoff", "items", "introduced", "expected_findings", "expected_drift", "label_state", "review", "labeling_note"],
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {"$ref": "#/$defs/id"},
+        "domain": {"type": "string", "minLength": 1, "maxLength": 80},
+        "title": {"type": "string", "minLength": 1, "maxLength": 160},
+        "source": {
+          "type": "object", "required": ["turns"], "additionalProperties": false,
+          "properties": {"turns": {"type": "array", "minItems": 1, "maxItems": 60, "items": {
+            "type": "object", "required": ["turn", "speaker", "text"], "additionalProperties": false,
+            "properties": {
+              "turn": {"type": "integer", "minimum": 1, "maximum": 60},
+              "speaker": {"type": "string", "minLength": 1, "maxLength": 40},
+              "text": {"type": "string", "minLength": 1, "maxLength": 2000}
+            }
+          }}}
+        },
+        "handoff": {
+          "type": "object", "required": ["text"], "additionalProperties": false,
+          "properties": {"text": {"type": "string", "minLength": 1, "maxLength": 4000}}
+        },
+        "items": {"type": "array", "minItems": 1, "maxItems": 40, "items": {"$ref": "#/$defs/item"}},
+        "introduced": {"type": "array", "maxItems": 20, "items": {"$ref": "#/$defs/introduced"}},
+        "expected_findings": {"type": "array", "maxItems": 12, "items": {"enum": [
+          "DECISIONS_ALTERED", "DECISIONS_MISSING", "DECISIONS_INTRODUCED", "FACTS_ALTERED", "FACTS_MISSING", "FACTS_INTRODUCED",
+          "UNSUPPORTED_FACT_PROMOTION", "REACTIVATED_DECISION", "AUTHORITY_CHANGED"]}},
+        "expected_drift": {"type": "boolean"},
+        "label_state": {"enum": ["CANDIDATE_MODEL_DRAFTED", "HUMAN_REVIEWED_UNAUTHENTICATED"]},
+        "review": {
+          "type": "object", "required": ["state", "reviewer_label", "reviewed_on", "note"], "additionalProperties": false,
+          "properties": {
+            "state": {"enum": ["NOT_REVIEWED", "HUMAN_REVIEWED", "HUMAN_AMENDED", "DISPUTED"]},
+            "reviewer_label": {"type": ["string", "null"], "minLength": 1, "maxLength": 60},
+            "reviewed_on": {"type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+            "note": {"type": "string", "maxLength": 600}
+          }
+        },
+        "labeling_note": {"type": "string", "maxLength": 400}
+      }
+    }
+  }
+}

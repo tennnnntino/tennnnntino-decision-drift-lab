@@ -1,0 +1,46 @@
+{
+  "case_id": "customer-followup",
+  "domain": "commercial follow-up",
+  "source": {
+    "facts": [
+      {
+        "id": "F5",
+        "text": "A synthetic lead requested a product comparison",
+        "status": "FACT",
+        "evidence": "synthetic://meeting"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D5",
+        "text": "Send only a draft for owner review",
+        "authority": "HUMAN",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "handoff": {
+    "facts": [
+      {
+        "id": "F5",
+        "text": "A synthetic lead requested a product comparison",
+        "status": "FACT",
+        "evidence": "synthetic://meeting"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D5",
+        "text": "Send only a draft for owner review",
+        "authority": "HUMAN",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "action": {
+    "name": "prepare-draft",
+    "scope": "internal",
+    "requires_human": false
+  },
+  "expected_verdict": "PASS"
+}

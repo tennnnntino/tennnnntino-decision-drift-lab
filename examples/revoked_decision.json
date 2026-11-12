@@ -1,0 +1,52 @@
+{
+  "case_id": "revoked-decision",
+  "domain": "release operations",
+  "source": {
+    "facts": [
+      {
+        "id": "F4",
+        "text": "Trial deployment is disabled",
+        "status": "FACT",
+        "evidence": "synthetic://ops"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D4",
+        "text": "Rollout permission was withdrawn",
+        "status": "REVOKED",
+        "authority": "RELEASE_OWNER"
+      }
+    ]
+  },
+  "handoff": {
+    "facts": [
+      {
+        "id": "F4",
+        "text": "Trial deployment is disabled",
+        "status": "FACT",
+        "evidence": "synthetic://ops"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D4",
+        "text": "Rollout permission was withdrawn",
+        "status": "ACTIVE",
+        "authority": "RELEASE_OWNER"
+      }
+    ]
+  },
+  "action": {
+    "name": "share-summary",
+    "scope": "internal",
+    "requires_human": true,
+    "human_approval": {
+      "approved": true,
+      "actor_type": "HUMAN",
+      "scope": "internal",
+      "action": "share-summary"
+    }
+  },
+  "expected_verdict": "FAIL"
+}

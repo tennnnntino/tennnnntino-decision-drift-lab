@@ -1,0 +1,327 @@
+{
+  "form": "handoff-label-form-v1",
+  "target_split": "heldout-human",
+  "source_split": "heldout",
+  "source_text_sha256": "10c19231d92241d2e9d9857cfe5e1ac98f51ff7ad487364cfbba3b666be4a8c9",
+  "labeller": {
+    "label": null,
+    "date": null,
+    "independence": {
+      "has_read_baseline_code": null,
+      "has_seen_candidate_labels": null,
+      "wrote_these_cases": null
+    }
+  },
+  "instructions": [
+    "Label alone, before looking at any candidate label, review sheet with labels, or the baseline code.",
+    "For each case list what someone would act on: decisions, constraints, facts that drive an action, open uncertainties.",
+    "Quote passages exactly as written. A quote must occur exactly once in its turn (or in the handoff note); lengthen it if needed.",
+    "kind: decision | fact. status: ACTIVE or REVOKED for decisions, FACT or TO_CONFIRM for facts.",
+    "authority: the person or role the conversation names as deciding, or null. authority_bearing: true when the item says who may approve or forbids acting without approval.",
+    "statement: the current wording. superseded: earlier wording that was corrected. revocation: the words that withdrew it. qualification: the hedge that makes a fact uncertain.",
+    "outcome: PRESERVED_VERBATIM | PRESERVED_PARAPHRASE | NOT_CARRIED_OK (revoked and simply absent) | ALTERED | OMITTED | REACTIVATED | PROMOTED | AUTHORITY_CHANGED.",
+    "handoff_quote: the passage of the note that carries, changes or contradicts the item; null for OMITTED and NOT_CARRIED_OK.",
+    "introduced: statements in the note that nothing in the conversation supports.",
+    "Fill in labeller.label (a name or pseudonym), labeller.date (YYYY-MM-DD) and all three independence answers with true or false."
+  ],
+  "cases": [
+    {
+      "case_id": "HH-01",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Mateo",
+          "text": "Move the equipment inspection to 3 pm on Thursday."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "Inspection moved to Thursday, 3 pm. The inspector needs badge access."
+        },
+        {
+          "turn": 3,
+          "speaker": "Mateo",
+          "text": "Arrange the badge, but the inspector must be escorted at all times."
+        }
+      ],
+      "handoff": "Equipment inspection rescheduled to Thursday at 15:00. A badge is to be arranged for the inspector, who has to be accompanied throughout the visit.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-02",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Sana",
+          "text": "Order 250 copies of the handbook."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "250 copies. Paperback?"
+        },
+        {
+          "turn": 3,
+          "speaker": "Sana",
+          "text": "Paperback, yes. Actually make it 300 copies, the new intake is larger."
+        },
+        {
+          "turn": 4,
+          "speaker": "Assistant",
+          "text": "300 paperback copies."
+        }
+      ],
+      "handoff": "Handbook order: 300 paperback copies (raised from the initial 250 because the new intake is larger).",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-03",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Tariq",
+          "text": "When does the pallet from the port arrive?"
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "The carrier's tracking says Tuesday, but customs clearance is still pending, so Tuesday is not guaranteed."
+        },
+        {
+          "turn": 3,
+          "speaker": "Tariq",
+          "text": "Then do not promise Tuesday to the shop. Say early next week."
+        }
+      ],
+      "handoff": "Pallet arrival: possibly Tuesday according to the carrier's tracking, though this is uncertain while customs clearance is pending. The shop must not be promised Tuesday; the wording to use is early next week.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-04",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Ida",
+          "text": "Order ten boxes of printer paper and two toner cartridges."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "Ten boxes of paper, two toner cartridges."
+        },
+        {
+          "turn": 3,
+          "speaker": "Ida",
+          "text": "Skip the toner, we found spares in the cupboard."
+        }
+      ],
+      "handoff": "Order ten boxes of printer paper.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-05",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Lena",
+          "text": "Export last quarter's attendance figures for the board pack."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "Export ready. It includes names of individual members."
+        },
+        {
+          "turn": 3,
+          "speaker": "Lena",
+          "text": "Remove the names before anything leaves the team. Aggregates only."
+        }
+      ],
+      "handoff": "Last quarter's attendance figures have been exported for the board pack.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-06",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Oskar",
+          "text": "Renew the design-tool subscription for another year."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "Renewal prepared, not yet submitted."
+        },
+        {
+          "turn": 3,
+          "speaker": "Oskar",
+          "text": "Hold on. We are switching tools in spring, so the renewal is off."
+        },
+        {
+          "turn": 4,
+          "speaker": "Assistant",
+          "text": "Renewal withdrawn."
+        }
+      ],
+      "handoff": "Pending: renew the design-tool subscription for another year. Renewal prepared, not yet submitted.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-07",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Bea",
+          "text": "How many people signed up for the hike?"
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "The form shows 34 sign-ups, though I suspect some are duplicates; I have not de-duplicated the list."
+        },
+        {
+          "turn": 3,
+          "speaker": "Bea",
+          "text": "Book the bus only once we have the clean number."
+        }
+      ],
+      "handoff": "34 people signed up for the hike. Book the bus only once we have the clean number.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-08",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Viktor",
+          "text": "The maintenance contract draft is ready for signature."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "Who signs?"
+        },
+        {
+          "turn": 3,
+          "speaker": "Viktor",
+          "text": "Only the director signs contracts. I am not authorised to sign."
+        }
+      ],
+      "handoff": "Maintenance contract draft is ready. Viktor will sign it.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-09",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Zofia",
+          "text": "The onboarding session is in room 2.14."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "Room 2.14 added to the invite draft."
+        },
+        {
+          "turn": 3,
+          "speaker": "Zofia",
+          "text": "My mistake, it is room 3.02. Room 2.14 is booked by another team."
+        }
+      ],
+      "handoff": "Onboarding session: room 2.14 (added to the invite draft).",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-10",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Emre",
+          "text": "Check the stock of the blue filters."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "The shelf count sheet lists 60 blue filters."
+        },
+        {
+          "turn": 3,
+          "speaker": "Emre",
+          "text": "Fine. Do not reorder until the count drops below 20."
+        }
+      ],
+      "handoff": "Blue filters: 60 according to the shelf count sheet. The supplier confirmed delivery within two days. Do not reorder until the count drops below 20.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-11",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Rosa",
+          "text": "You may offer the 10 percent discount to the Albrecht account, but only if they commit to the two-year term."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "Discount tied to the two-year commitment."
+        },
+        {
+          "turn": 3,
+          "speaker": "Rosa",
+          "text": "Exactly. Without the commitment, standard pricing applies."
+        }
+      ],
+      "handoff": "Albrecht account: offer the 10 percent discount.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    },
+    {
+      "case_id": "HH-12",
+      "turns": [
+        {
+          "turn": 1,
+          "speaker": "Hugo",
+          "text": "For the team dinner, the kitchen must not use peanuts in any dish."
+        },
+        {
+          "turn": 2,
+          "speaker": "Assistant",
+          "text": "No peanuts in any dish. Number of guests?"
+        },
+        {
+          "turn": 3,
+          "speaker": "Hugo",
+          "text": "Fourteen guests, and two of them are vegetarian."
+        }
+      ],
+      "handoff": "Team dinner: fourteen guests, twelve of them vegetarian. The kitchen may use peanuts in side dishes only.",
+      "items": [],
+      "introduced": [],
+      "note": ""
+    }
+  ]
+}

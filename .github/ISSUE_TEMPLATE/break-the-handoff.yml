@@ -1,0 +1,46 @@
+name: "Break the Handoff — synthetic counterexample"
+description: "Submit a new fictional decision-drift case and an expected observable failure"
+title: "[SYNTHETIC CASE] "
+labels: ["research", "adversarial-case"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do NOT submit real conversations, customer records, secrets, personal identifiers or attacks on third-party systems.
+        This is an experimental structural evaluator, not a production authorization service.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Data and target boundaries
+      options:
+        - label: This case uses wholly fictitious synthetic data and does not target a real service.
+          required: true
+  - type: dropdown
+    id: class
+    attributes:
+      label: Failure category
+      options: ["Omission", "Rewrite", "Introduction", "Authority", "Evidence", "Revocation", "Unexpected false positive", "Other"]
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior and reason
+      description: Explain which decision, authority condition or source reference should be preserved and why.
+    validations:
+      required: true
+  - type: textarea
+    id: case
+    attributes:
+      label: Minimal synthetic fixture
+      description: JSON fixture or step-by-step instructions with made-up identities only.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior, commands, versions
+      description: Include the exact command and version used. No proprietary logs.
+    validations:
+      required: true

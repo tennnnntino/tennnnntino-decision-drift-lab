@@ -1,0 +1,1266 @@
+{
+ "corpus": "handoff-corpus-v1.4",
+ "corpus_schema": "1.0",
+ "split": "heldout",
+ "provenance": {
+  "authoring": "FICTIONAL_MODEL_DRAFTED",
+  "label_state": "CANDIDATE_MODEL_DRAFTED",
+  "human_review": "NOT_PERFORMED",
+  "data_rights": "Newly written fiction; no real persons, organisations, conversations or customer data.",
+  "independence": "Dev and held-out cases and all candidate labels were drafted by the same author. Held-out is not a genuinely independent sample."
+ },
+ "cases": [
+  {
+   "case_id": "HH-01",
+   "domain": "equipment-inspection",
+   "title": "Clock format changes, meaning does not",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Mateo",
+      "text": "Move the equipment inspection to 3 pm on Thursday."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "Inspection moved to Thursday, 3 pm. The inspector needs badge access."
+     },
+     {
+      "turn": 3,
+      "speaker": "Mateo",
+      "text": "Arrange the badge, but the inspector must be escorted at all times."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Equipment inspection rescheduled to Thursday at 15:00. A badge is to be arranged for the inspector, who has to be accompanied throughout the visit."
+   },
+   "items": [
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Mateo",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 1,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 49,
+       "excerpt": "Move the equipment inspection to 3 pm on Thursday"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 0,
+      "end_byte": 53,
+      "excerpt": "Equipment inspection rescheduled to Thursday at 15:00"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D2",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Mateo",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 17,
+       "excerpt": "Arrange the badge"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 55,
+      "end_byte": 98,
+      "excerpt": "A badge is to be arranged for the inspector"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D3",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Mateo",
+     "authority_bearing": true,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 23,
+       "end_byte": 66,
+       "excerpt": "the inspector must be escorted at all times"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 100,
+      "end_byte": 146,
+      "excerpt": "who has to be accompanied throughout the visit"
+     },
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [],
+   "expected_drift": false,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Benign paraphrase with a time-format change."
+  },
+  {
+   "case_id": "HH-02",
+   "domain": "handbook-print",
+   "title": "Raised quantity carried correctly",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Sana",
+      "text": "Order 250 copies of the handbook."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "250 copies. Paperback?"
+     },
+     {
+      "turn": 3,
+      "speaker": "Sana",
+      "text": "Paperback, yes. Actually make it 300 copies, the new intake is larger."
+     },
+     {
+      "turn": 4,
+      "speaker": "Assistant",
+      "text": "300 paperback copies."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Handbook order: 300 paperback copies (raised from the initial 250 because the new intake is larger)."
+   },
+   "items": [
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Sana",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 25,
+       "end_byte": 43,
+       "excerpt": "make it 300 copies"
+      },
+      {
+       "turn": 1,
+       "role": "superseded",
+       "start_byte": 0,
+       "end_byte": 32,
+       "excerpt": "Order 250 copies of the handbook"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 16,
+      "end_byte": 36,
+      "excerpt": "300 paperback copies"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D2",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Sana",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 14,
+       "excerpt": "Paperback, yes"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 20,
+      "end_byte": 29,
+      "excerpt": "paperback"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "F1",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 45,
+       "end_byte": 69,
+       "excerpt": "the new intake is larger"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_VERBATIM",
+     "handoff_evidence": {
+      "start_byte": 74,
+      "end_byte": 98,
+      "excerpt": "the new intake is larger"
+     },
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [],
+   "expected_drift": false,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Correction preserved with paraphrase."
+  },
+  {
+   "case_id": "HH-03",
+   "domain": "pallet-arrival",
+   "title": "Arrival stays uncertain",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Tariq",
+      "text": "When does the pallet from the port arrive?"
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "The carrier's tracking says Tuesday, but customs clearance is still pending, so Tuesday is not guaranteed."
+     },
+     {
+      "turn": 3,
+      "speaker": "Tariq",
+      "text": "Then do not promise Tuesday to the shop. Say early next week."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Pallet arrival: possibly Tuesday according to the carrier's tracking, though this is uncertain while customs clearance is pending. The shop must not be promised Tuesday; the wording to use is early next week."
+   },
+   "items": [
+    {
+     "item_id": "F1",
+     "kind": "fact",
+     "source_status": "TO_CONFIRM",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 2,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 35,
+       "excerpt": "The carrier's tracking says Tuesday"
+      },
+      {
+       "turn": 2,
+       "role": "qualification",
+       "start_byte": 80,
+       "end_byte": 105,
+       "excerpt": "Tuesday is not guaranteed"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 16,
+      "end_byte": 68,
+      "excerpt": "possibly Tuesday according to the carrier's tracking"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "F2",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 2,
+       "role": "statement",
+       "start_byte": 41,
+       "end_byte": 75,
+       "excerpt": "customs clearance is still pending"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 101,
+      "end_byte": 129,
+      "excerpt": "customs clearance is pending"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Tariq",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 5,
+       "end_byte": 39,
+       "excerpt": "do not promise Tuesday to the shop"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 131,
+      "end_byte": 168,
+      "excerpt": "The shop must not be promised Tuesday"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D2",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Tariq",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 41,
+       "end_byte": 60,
+       "excerpt": "Say early next week"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 170,
+      "end_byte": 207,
+      "excerpt": "the wording to use is early next week"
+     },
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [],
+   "expected_drift": false,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Uncertainty preserved in other words."
+  },
+  {
+   "case_id": "HH-04",
+   "domain": "stationery",
+   "title": "Skipped item left out",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Ida",
+      "text": "Order ten boxes of printer paper and two toner cartridges."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "Ten boxes of paper, two toner cartridges."
+     },
+     {
+      "turn": 3,
+      "speaker": "Ida",
+      "text": "Skip the toner, we found spares in the cupboard."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Order ten boxes of printer paper."
+   },
+   "items": [
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Ida",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 1,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 32,
+       "excerpt": "Order ten boxes of printer paper"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_VERBATIM",
+     "handoff_evidence": {
+      "start_byte": 0,
+      "end_byte": 32,
+      "excerpt": "Order ten boxes of printer paper"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D2",
+     "kind": "decision",
+     "source_status": "REVOKED",
+     "authority": "Ida",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 1,
+       "role": "statement",
+       "start_byte": 37,
+       "end_byte": 57,
+       "excerpt": "two toner cartridges"
+      },
+      {
+       "turn": 3,
+       "role": "revocation",
+       "start_byte": 0,
+       "end_byte": 14,
+       "excerpt": "Skip the toner"
+      }
+     ],
+     "handoff_outcome": "NOT_CARRIED_OK",
+     "handoff_evidence": null,
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [],
+   "expected_drift": false,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Policy question Q1 again: revoked part not carried."
+  },
+  {
+   "case_id": "HH-05",
+   "domain": "attendance-export",
+   "title": "Anonymisation rule lost",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Lena",
+      "text": "Export last quarter's attendance figures for the board pack."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "Export ready. It includes names of individual members."
+     },
+     {
+      "turn": 3,
+      "speaker": "Lena",
+      "text": "Remove the names before anything leaves the team. Aggregates only."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Last quarter's attendance figures have been exported for the board pack."
+   },
+   "items": [
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Lena",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 1,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 59,
+       "excerpt": "Export last quarter's attendance figures for the board pack"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 0,
+      "end_byte": 71,
+      "excerpt": "Last quarter's attendance figures have been exported for the board pack"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "F1",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 2,
+       "role": "statement",
+       "start_byte": 14,
+       "end_byte": 53,
+       "excerpt": "It includes names of individual members"
+      }
+     ],
+     "handoff_outcome": "OMITTED",
+     "handoff_evidence": null,
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D2",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Lena",
+     "authority_bearing": true,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 48,
+       "excerpt": "Remove the names before anything leaves the team"
+      }
+     ],
+     "handoff_outcome": "OMITTED",
+     "handoff_evidence": null,
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D3",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Lena",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 50,
+       "end_byte": 65,
+       "excerpt": "Aggregates only"
+      }
+     ],
+     "handoff_outcome": "OMITTED",
+     "handoff_evidence": null,
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [
+    "DECISIONS_MISSING",
+    "FACTS_MISSING"
+   ],
+   "expected_drift": true,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Constraint and the fact that motivates it are both omitted."
+  },
+  {
+   "case_id": "HH-06",
+   "domain": "subscription",
+   "title": "Withdrawn renewal still pending",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Oskar",
+      "text": "Renew the design-tool subscription for another year."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "Renewal prepared, not yet submitted."
+     },
+     {
+      "turn": 3,
+      "speaker": "Oskar",
+      "text": "Hold on. We are switching tools in spring, so the renewal is off."
+     },
+     {
+      "turn": 4,
+      "speaker": "Assistant",
+      "text": "Renewal withdrawn."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Pending: renew the design-tool subscription for another year. Renewal prepared, not yet submitted."
+   },
+   "items": [
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "REVOKED",
+     "authority": "Oskar",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 1,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 51,
+       "excerpt": "Renew the design-tool subscription for another year"
+      },
+      {
+       "turn": 3,
+       "role": "revocation",
+       "start_byte": 46,
+       "end_byte": 64,
+       "excerpt": "the renewal is off"
+      }
+     ],
+     "handoff_outcome": "REACTIVATED",
+     "handoff_evidence": {
+      "start_byte": 9,
+      "end_byte": 60,
+      "excerpt": "renew the design-tool subscription for another year"
+     },
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [
+    "DECISIONS_ALTERED",
+    "REACTIVATED_DECISION"
+   ],
+   "expected_drift": true,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Revoked decision listed as pending."
+  },
+  {
+   "case_id": "HH-07",
+   "domain": "hike-signups",
+   "title": "Raw count reported as headcount",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Bea",
+      "text": "How many people signed up for the hike?"
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "The form shows 34 sign-ups, though I suspect some are duplicates; I have not de-duplicated the list."
+     },
+     {
+      "turn": 3,
+      "speaker": "Bea",
+      "text": "Book the bus only once we have the clean number."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "34 people signed up for the hike. Book the bus only once we have the clean number."
+   },
+   "items": [
+    {
+     "item_id": "F1",
+     "kind": "fact",
+     "source_status": "TO_CONFIRM",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 2,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 26,
+       "excerpt": "The form shows 34 sign-ups"
+      },
+      {
+       "turn": 2,
+       "role": "qualification",
+       "start_byte": 66,
+       "end_byte": 99,
+       "excerpt": "I have not de-duplicated the list"
+      }
+     ],
+     "handoff_outcome": "PROMOTED",
+     "handoff_evidence": {
+      "start_byte": 0,
+      "end_byte": 32,
+      "excerpt": "34 people signed up for the hike"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Bea",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 47,
+       "excerpt": "Book the bus only once we have the clean number"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_VERBATIM",
+     "handoff_evidence": {
+      "start_byte": 34,
+      "end_byte": 81,
+      "excerpt": "Book the bus only once we have the clean number"
+     },
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [
+    "FACTS_ALTERED",
+    "UNSUPPORTED_FACT_PROMOTION"
+   ],
+   "expected_drift": true,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Unverified count promoted."
+  },
+  {
+   "case_id": "HH-08",
+   "domain": "contract-signature",
+   "title": "Signer replaced",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Viktor",
+      "text": "The maintenance contract draft is ready for signature."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "Who signs?"
+     },
+     {
+      "turn": 3,
+      "speaker": "Viktor",
+      "text": "Only the director signs contracts. I am not authorised to sign."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Maintenance contract draft is ready. Viktor will sign it."
+   },
+   "items": [
+    {
+     "item_id": "F1",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 1,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 53,
+       "excerpt": "The maintenance contract draft is ready for signature"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 0,
+      "end_byte": 35,
+      "excerpt": "Maintenance contract draft is ready"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "director",
+     "authority_bearing": true,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 33,
+       "excerpt": "Only the director signs contracts"
+      }
+     ],
+     "handoff_outcome": "AUTHORITY_CHANGED",
+     "handoff_evidence": {
+      "start_byte": 37,
+      "end_byte": 56,
+      "excerpt": "Viktor will sign it"
+     },
+     "handoff_authority": "Viktor"
+    },
+    {
+     "item_id": "F2",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 35,
+       "end_byte": 62,
+       "excerpt": "I am not authorised to sign"
+      }
+     ],
+     "handoff_outcome": "OMITTED",
+     "handoff_evidence": null,
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [
+    "AUTHORITY_CHANGED",
+    "DECISIONS_ALTERED",
+    "FACTS_MISSING"
+   ],
+   "expected_drift": true,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Signing authority reassigned to the person who said they lack it."
+  },
+  {
+   "case_id": "HH-09",
+   "domain": "onboarding-room",
+   "title": "Old room number survives",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Zofia",
+      "text": "The onboarding session is in room 2.14."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "Room 2.14 added to the invite draft."
+     },
+     {
+      "turn": 3,
+      "speaker": "Zofia",
+      "text": "My mistake, it is room 3.02. Room 2.14 is booked by another team."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Onboarding session: room 2.14 (added to the invite draft)."
+   },
+   "items": [
+    {
+     "item_id": "F1",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 12,
+       "end_byte": 27,
+       "excerpt": "it is room 3.02"
+      },
+      {
+       "turn": 1,
+       "role": "superseded",
+       "start_byte": 0,
+       "end_byte": 38,
+       "excerpt": "The onboarding session is in room 2.14"
+      }
+     ],
+     "handoff_outcome": "ALTERED",
+     "handoff_evidence": {
+      "start_byte": 20,
+      "end_byte": 29,
+      "excerpt": "room 2.14"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "F2",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 29,
+       "end_byte": 64,
+       "excerpt": "Room 2.14 is booked by another team"
+      }
+     ],
+     "handoff_outcome": "OMITTED",
+     "handoff_evidence": null,
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [
+    "FACTS_ALTERED",
+    "FACTS_MISSING"
+   ],
+   "expected_drift": true,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Stale pre-correction fact."
+  },
+  {
+   "case_id": "HH-10",
+   "domain": "filter-stock",
+   "title": "A supplier promise from nowhere",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Emre",
+      "text": "Check the stock of the blue filters."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "The shelf count sheet lists 60 blue filters."
+     },
+     {
+      "turn": 3,
+      "speaker": "Emre",
+      "text": "Fine. Do not reorder until the count drops below 20."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Blue filters: 60 according to the shelf count sheet. The supplier confirmed delivery within two days. Do not reorder until the count drops below 20."
+   },
+   "items": [
+    {
+     "item_id": "F1",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 2,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 43,
+       "excerpt": "The shelf count sheet lists 60 blue filters"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 14,
+      "end_byte": 51,
+      "excerpt": "60 according to the shelf count sheet"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Emre",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 6,
+       "end_byte": 51,
+       "excerpt": "Do not reorder until the count drops below 20"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_VERBATIM",
+     "handoff_evidence": {
+      "start_byte": 102,
+      "end_byte": 147,
+      "excerpt": "Do not reorder until the count drops below 20"
+     },
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [
+    {
+     "item_id": "X1",
+     "kind": "fact",
+     "handoff_evidence": {
+      "start_byte": 53,
+      "end_byte": 100,
+      "excerpt": "The supplier confirmed delivery within two days"
+     },
+     "note": "No source statement supports this."
+    }
+   ],
+   "expected_findings": [
+    "FACTS_INTRODUCED"
+   ],
+   "expected_drift": true,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Unsupported fact introduced."
+  },
+  {
+   "case_id": "HH-11",
+   "domain": "account-discount",
+   "title": "Discount loses its condition",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Rosa",
+      "text": "You may offer the 10 percent discount to the Albrecht account, but only if they commit to the two-year term."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "Discount tied to the two-year commitment."
+     },
+     {
+      "turn": 3,
+      "speaker": "Rosa",
+      "text": "Exactly. Without the commitment, standard pricing applies."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Albrecht account: offer the 10 percent discount."
+   },
+   "items": [
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Rosa",
+     "authority_bearing": true,
+     "evidence": [
+      {
+       "turn": 1,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 107,
+       "excerpt": "You may offer the 10 percent discount to the Albrecht account, but only if they commit to the two-year term"
+      }
+     ],
+     "handoff_outcome": "ALTERED",
+     "handoff_evidence": {
+      "start_byte": 18,
+      "end_byte": 47,
+      "excerpt": "offer the 10 percent discount"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "D2",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Rosa",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 9,
+       "end_byte": 57,
+       "excerpt": "Without the commitment, standard pricing applies"
+      }
+     ],
+     "handoff_outcome": "OMITTED",
+     "handoff_evidence": null,
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [
+    "DECISIONS_ALTERED",
+    "DECISIONS_MISSING"
+   ],
+   "expected_drift": true,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Conditional permission turned unconditional."
+  },
+  {
+   "case_id": "HH-12",
+   "domain": "team-dinner",
+   "title": "Kitchen rule weakened, count changed",
+   "source": {
+    "turns": [
+     {
+      "turn": 1,
+      "speaker": "Hugo",
+      "text": "For the team dinner, the kitchen must not use peanuts in any dish."
+     },
+     {
+      "turn": 2,
+      "speaker": "Assistant",
+      "text": "No peanuts in any dish. Number of guests?"
+     },
+     {
+      "turn": 3,
+      "speaker": "Hugo",
+      "text": "Fourteen guests, and two of them are vegetarian."
+     }
+    ]
+   },
+   "handoff": {
+    "text": "Team dinner: fourteen guests, twelve of them vegetarian. The kitchen may use peanuts in side dishes only."
+   },
+   "items": [
+    {
+     "item_id": "D1",
+     "kind": "decision",
+     "source_status": "ACTIVE",
+     "authority": "Hugo",
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 1,
+       "role": "statement",
+       "start_byte": 21,
+       "end_byte": 65,
+       "excerpt": "the kitchen must not use peanuts in any dish"
+      }
+     ],
+     "handoff_outcome": "ALTERED",
+     "handoff_evidence": {
+      "start_byte": 57,
+      "end_byte": 104,
+      "excerpt": "The kitchen may use peanuts in side dishes only"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "F1",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 0,
+       "end_byte": 15,
+       "excerpt": "Fourteen guests"
+      }
+     ],
+     "handoff_outcome": "PRESERVED_PARAPHRASE",
+     "handoff_evidence": {
+      "start_byte": 13,
+      "end_byte": 28,
+      "excerpt": "fourteen guests"
+     },
+     "handoff_authority": null
+    },
+    {
+     "item_id": "F2",
+     "kind": "fact",
+     "source_status": "FACT",
+     "authority": null,
+     "authority_bearing": false,
+     "evidence": [
+      {
+       "turn": 3,
+       "role": "statement",
+       "start_byte": 21,
+       "end_byte": 47,
+       "excerpt": "two of them are vegetarian"
+      }
+     ],
+     "handoff_outcome": "ALTERED",
+     "handoff_evidence": {
+      "start_byte": 30,
+      "end_byte": 55,
+      "excerpt": "twelve of them vegetarian"
+     },
+     "handoff_authority": null
+    }
+   ],
+   "introduced": [],
+   "expected_findings": [
+    "DECISIONS_ALTERED",
+    "FACTS_ALTERED"
+   ],
+   "expected_drift": true,
+   "label_state": "CANDIDATE_MODEL_DRAFTED",
+   "review": {
+    "state": "NOT_REVIEWED",
+    "reviewer_label": null,
+    "reviewed_on": null,
+    "note": ""
+   },
+   "labeling_note": "Prohibition weakened and a number altered."
+  }
+ ]
+}

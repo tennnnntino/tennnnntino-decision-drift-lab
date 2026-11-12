@@ -1,0 +1,62 @@
+{
+  "case_id": "support-triage",
+  "domain": "service desk",
+  "source": {
+    "facts": [
+      {
+        "id": "F6",
+        "text": "A ticket has been submitted",
+        "status": "FACT",
+        "evidence": "synthetic://ticket"
+      },
+      {
+        "id": "F7",
+        "text": "Cause not yet verified",
+        "status": "UNKNOWN",
+        "evidence": "synthetic://ticket"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D6",
+        "text": "Escalate before external reply",
+        "authority": "SERVICE_MANAGER",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "handoff": {
+    "facts": [
+      {
+        "id": "F6",
+        "text": "A ticket has been submitted",
+        "status": "FACT",
+        "evidence": "synthetic://ticket"
+      },
+      {
+        "id": "F7",
+        "text": "Cause not yet verified",
+        "status": "UNKNOWN",
+        "evidence": "synthetic://ticket"
+      }
+    ],
+    "decisions": [
+      {
+        "id": "D6",
+        "text": "Escalate before external reply",
+        "authority": "SERVICE_MANAGER",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "action": {
+    "name": "send-reply",
+    "scope": "external",
+    "requires_human": true,
+    "human_approval": {
+      "approved": false,
+      "actor_type": "AGENT"
+    }
+  },
+  "expected_verdict": "FAIL"
+}

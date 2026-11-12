@@ -1,0 +1,512 @@
+{
+ "contract": "schema-vectors-v1.4",
+ "note": "Shared by both runtimes. 'schema' is 'case' (contracts/case.schema.json) or 'inline'. 'expect' is the sorted violation list or SCHEMA_ERROR.",
+ "vectors": [
+  {
+   "id": "S01",
+   "schema": "case",
+   "inline_schema": null,
+   "instance": {
+    "case_id": "v",
+    "source": {
+     "facts": [],
+     "decisions": []
+    },
+    "handoff": {
+     "facts": [],
+     "decisions": []
+    },
+    "action": {
+     "requires_human": false
+    }
+   },
+   "expect": [],
+   "why": "minimal valid case"
+  },
+  {
+   "id": "S02",
+   "schema": "case",
+   "inline_schema": null,
+   "instance": {
+    "source": {
+     "facts": [],
+     "decisions": []
+    },
+    "handoff": {
+     "facts": [],
+     "decisions": []
+    },
+    "action": {
+     "requires_human": false
+    }
+   },
+   "expect": [
+    {
+     "path": "/case_id",
+     "keyword": "required"
+    }
+   ],
+   "why": "missing case_id"
+  },
+  {
+   "id": "S03",
+   "schema": "case",
+   "inline_schema": null,
+   "instance": {
+    "case_id": "v",
+    "source": [],
+    "handoff": {
+     "facts": [],
+     "decisions": []
+    },
+    "action": {
+     "requires_human": false
+    }
+   },
+   "expect": [
+    {
+     "path": "/source",
+     "keyword": "type"
+    }
+   ],
+   "why": "array where the source object is expected"
+  },
+  {
+   "id": "S04",
+   "schema": "case",
+   "inline_schema": null,
+   "instance": {
+    "case_id": "v",
+    "source": {
+     "facts": [],
+     "decisions": []
+    },
+    "handoff": {
+     "facts": [],
+     "decisions": []
+    },
+    "action": []
+   },
+   "expect": [
+    {
+     "path": "/action",
+     "keyword": "type"
+    }
+   ],
+   "why": "array where the action object is expected"
+  },
+  {
+   "id": "S05",
+   "schema": "case",
+   "inline_schema": null,
+   "instance": {
+    "case_id": "v",
+    "source": {
+     "facts": [
+      {
+       "id": ""
+      }
+     ]
+    },
+    "handoff": {
+     "facts": [],
+     "decisions": []
+    },
+    "action": {
+     "requires_human": false
+    }
+   },
+   "expect": [
+    {
+     "path": "/source/facts/0/id",
+     "keyword": "minLength"
+    }
+   ],
+   "why": "empty item id"
+  },
+  {
+   "id": "S06",
+   "schema": "case",
+   "inline_schema": null,
+   "instance": {
+    "case_id": "v",
+    "source": {
+     "facts": [
+      {
+       "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+     ]
+    },
+    "handoff": {
+     "facts": [],
+     "decisions": []
+    },
+    "action": {
+     "requires_human": false
+    }
+   },
+   "expect": [
+    {
+     "path": "/source/facts/0/id",
+     "keyword": "maxLength"
+    }
+   ],
+   "why": "overlong item id"
+  },
+  {
+   "id": "S07",
+   "schema": "case",
+   "inline_schema": null,
+   "instance": {
+    "case_id": "v",
+    "source": {
+     "facts": [],
+     "decisions": []
+    },
+    "handoff": {
+     "facts": [],
+     "decisions": []
+    },
+    "action": {
+     "requires_human": "false"
+    }
+   },
+   "expect": [
+    {
+     "path": "/action/requires_human",
+     "keyword": "type"
+    }
+   ],
+   "why": "string instead of boolean"
+  },
+  {
+   "id": "S08",
+   "schema": "case",
+   "inline_schema": null,
+   "instance": {
+    "case_id": "v",
+    "source": {
+     "facts": [],
+     "decisions": []
+    },
+    "handoff": {
+     "facts": [],
+     "decisions": []
+    },
+    "action": {
+     "requires_human": false
+    },
+    "expected_verdict": "MAYBE"
+   },
+   "expect": [
+    {
+     "path": "/expected_verdict",
+     "keyword": "enum"
+    }
+   ],
+   "why": "unknown verdict"
+  },
+  {
+   "id": "S09",
+   "schema": "inline",
+   "inline_schema": {
+    "enum": [
+     1
+    ]
+   },
+   "instance": true,
+   "expect": [
+    {
+     "path": "/",
+     "keyword": "enum"
+    }
+   ],
+   "why": "true is not the number 1"
+  },
+  {
+   "id": "S10",
+   "schema": "inline",
+   "inline_schema": {
+    "enum": [
+     0,
+     "x"
+    ]
+   },
+   "instance": false,
+   "expect": [
+    {
+     "path": "/",
+     "keyword": "enum"
+    }
+   ],
+   "why": "false is not the number 0"
+  },
+  {
+   "id": "S11",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "string",
+    "pattern": "^[a-z]+$"
+   },
+   "instance": "abc\n",
+   "expect": [
+    {
+     "path": "/",
+     "keyword": "pattern"
+    }
+   ],
+   "why": "trailing newline must not satisfy an anchored pattern"
+  },
+  {
+   "id": "S12",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "object",
+    "patternProperties": {}
+   },
+   "instance": {},
+   "expect": "SCHEMA_ERROR",
+   "why": "unsupported keyword is refused, not ignored"
+  },
+  {
+   "id": "S13",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "string",
+    "pattern": "[a-z]+"
+   },
+   "instance": "abc",
+   "expect": "SCHEMA_ERROR",
+   "why": "unanchored pattern is refused"
+  },
+  {
+   "id": "S14",
+   "schema": "inline",
+   "inline_schema": {
+    "$ref": "#/$defs/missing"
+   },
+   "instance": 1,
+   "expect": "SCHEMA_ERROR",
+   "why": "unresolvable reference"
+  },
+  {
+   "id": "S15",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "object",
+    "properties": {
+     "a": {
+      "type": "integer"
+     }
+    },
+    "additionalProperties": false
+   },
+   "instance": {
+    "a": 1,
+    "b": 2
+   },
+   "expect": [
+    {
+     "path": "/b",
+     "keyword": "additionalProperties"
+    }
+   ],
+   "why": "unexpected property"
+  },
+  {
+   "id": "S16",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "string",
+    "maxLength": 1
+   },
+   "instance": "\ud83d\ude00",
+   "expect": [],
+   "why": "length counts code points, not UTF-16 units"
+  },
+  {
+   "id": "S17",
+   "schema": "inline",
+   "inline_schema": {
+    "type": [
+     "string",
+     "null"
+    ]
+   },
+   "instance": null,
+   "expect": [],
+   "why": "nullable type"
+  },
+  {
+   "id": "S18",
+   "schema": "inline",
+   "inline_schema": {
+    "type": [
+     "string",
+     "null"
+    ]
+   },
+   "instance": 3,
+   "expect": [
+    {
+     "path": "/",
+     "keyword": "type"
+    }
+   ],
+   "why": "nullable type violated"
+  },
+  {
+   "id": "S19",
+   "schema": "inline",
+   "inline_schema": {
+    "const": false
+   },
+   "instance": 0,
+   "expect": [
+    {
+     "path": "/",
+     "keyword": "const"
+    }
+   ],
+   "why": "0 is not false"
+  },
+  {
+   "id": "S20",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "integer",
+    "minimum": 1,
+    "maximum": 5
+   },
+   "instance": 9,
+   "expect": [
+    {
+     "path": "/",
+     "keyword": "maximum"
+    }
+   ],
+   "why": "range"
+  },
+  {
+   "id": "S21",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "array",
+    "minItems": 2,
+    "maxItems": 3
+   },
+   "instance": [
+    1
+   ],
+   "expect": [
+    {
+     "path": "/",
+     "keyword": "minItems"
+    }
+   ],
+   "why": "too few items"
+  },
+  {
+   "id": "S22",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "object",
+    "properties": {
+     "a": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "id"
+       ]
+      }
+     }
+    }
+   },
+   "instance": {
+    "a": [
+     {
+      "id": 1
+     },
+     {}
+    ]
+   },
+   "expect": [
+    {
+     "path": "/a/1/id",
+     "keyword": "required"
+    }
+   ],
+   "why": "nested path"
+  },
+  {
+   "id": "S23",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "integer"
+   },
+   "instance": true,
+   "expect": [
+    {
+     "path": "/",
+     "keyword": "type"
+    }
+   ],
+   "why": "boolean is not an integer"
+  },
+  {
+   "id": "S24",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "object",
+    "required": [
+     "toString"
+    ]
+   },
+   "instance": {},
+   "expect": [
+    {
+     "path": "/toString",
+     "keyword": "required"
+    }
+   ],
+   "why": "inherited property names do not count"
+  },
+  {
+   "id": "S25",
+   "schema": "inline",
+   "inline_schema": {
+    "type": "string",
+    "format": "email"
+   },
+   "instance": "x",
+   "expect": "SCHEMA_ERROR",
+   "why": "format is not implemented, so it is refused"
+  },
+  {
+   "id": "S26",
+   "schema": "case",
+   "inline_schema": null,
+   "instance": {
+    "case_id": "v",
+    "source": {
+     "facts": null
+    },
+    "handoff": {
+     "facts": [],
+     "decisions": []
+    },
+    "action": {
+     "requires_human": false
+    }
+   },
+   "expect": [
+    {
+     "path": "/source/facts",
+     "keyword": "type"
+    }
+   ],
+   "why": "explicit null list"
+  }
+ ]
+}

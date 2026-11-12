@@ -1,0 +1,1380 @@
+{
+  "protocol": "handoff-benchmark-v1.4",
+  "reproduce": "python -m ddlab corpus snapshot",
+  "claim_boundary": "Synthetic fiction, model-drafted candidate labels, trivial baselines. Disagreement counts are a review queue, not accuracy. No rate is reported without human-reviewed labels. Ambiguity flags are advisory and are not counted as drift.",
+  "inputs_sha256_lf_normalised": {
+    "research/handoff-corpus-v1_4/dev.json": "f481522a30fa9219fbf238bf4df65d722658bfe8ed8d9c30b45679b8ac834ef1",
+    "research/handoff-corpus-v1_4/heldout.json": "fe6b5fcf15e3231662da80df52632aaacbaa8f1b4e7d6eb63d10b51bf55e3852",
+    "ddlab/baselines.py": "5b337e0aa97f1011ab0cd1ecd73392f08a54d360ab3f78a8e06e11820379c2ee"
+  },
+  "rule_based_thresholds": {
+    "match": 0.34,
+    "intro": 0.25,
+    "tuned_on": "dev split only, against candidate labels"
+  },
+  "splits": {
+    "dev": {
+      "status": "RUN",
+      "cases": 25,
+      "label_review": {
+        "human_reviewed": 0,
+        "not_reviewed": 25
+      },
+      "baselines": {
+        "exact_text": {
+          "confusion_matrix": null,
+          "confusion_matrix_basis": "WITHHELD: no human-reviewed labels in this split",
+          "unreviewed_review_queue": {
+            "meaning": "Disagreement with MODEL-DRAFTED candidate labels. A list of cases to look at, not accuracy.",
+            "cases_compared": 25,
+            "disagreements": 6,
+            "cases": [
+              {
+                "case_id": "HD-02",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-03",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-04",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-05",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-06",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-08",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              }
+            ]
+          }
+        },
+        "rule_based": {
+          "confusion_matrix": null,
+          "confusion_matrix_basis": "WITHHELD: no human-reviewed labels in this split",
+          "unreviewed_review_queue": {
+            "meaning": "Disagreement with MODEL-DRAFTED candidate labels. A list of cases to look at, not accuracy.",
+            "cases_compared": 25,
+            "disagreements": 6,
+            "cases": [
+              {
+                "case_id": "HD-01",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-02",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-04",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-05",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-06",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HD-08",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              }
+            ]
+          }
+        },
+        "structured_transfer": {
+          "confusion_matrix": null,
+          "confusion_matrix_basis": "WITHHELD: no human-reviewed labels in this split",
+          "unreviewed_review_queue": {
+            "meaning": "Disagreement with MODEL-DRAFTED candidate labels. A list of cases to look at, not accuracy.",
+            "cases_compared": 25,
+            "disagreements": 1,
+            "cases": [
+              {
+                "case_id": "HD-07",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              }
+            ]
+          }
+        }
+      },
+      "rows": [
+        {
+          "case_id": "HD-01",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": false,
+            "not_verbatim": []
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "FACTS_INTRODUCED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HD-02",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2",
+              "D3",
+              "F1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HD-03",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2",
+              "F1",
+              "D3",
+              "D4"
+            ]
+          },
+          "rule_based": {
+            "drift": false,
+            "codes": []
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HD-04",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D3"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HD-05",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HD-06",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "F2",
+              "D1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "FACTS_ALTERED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HD-07",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [
+            "REVOKED_DECISION_TRACE_LOST"
+          ],
+          "exact_text": {
+            "drift": false,
+            "not_verbatim": []
+          },
+          "rule_based": {
+            "drift": false,
+            "codes": []
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "REVOKED_DECISION_TRACE_LOST"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-08",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "FACTS_MISSING",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HD-09",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-10",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "D1",
+              "F3",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-11",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "FACTS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "F1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "FACTS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-12",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "REACTIVATED_DECISION"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "FACTS_MISSING",
+              "REACTIVATED_DECISION"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "REACTIVATED_DECISION"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-13",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "F2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "FACTS_MISSING",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-14",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "FACTS_INTRODUCED"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_INTRODUCED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "FACTS_INTRODUCED"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-15",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "AUTHORITY_CHANGED",
+              "DECISIONS_ALTERED"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "D1",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "AUTHORITY_CHANGED",
+              "DECISIONS_ALTERED",
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "AUTHORITY_CHANGED",
+              "DECISIONS_ALTERED"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-16",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2",
+              "D3",
+              "F1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-17",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "FACTS_ALTERED"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "D1",
+              "F2",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "FACTS_ALTERED"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-18",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "F1",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-19",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_INTRODUCED",
+              "FACTS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "F1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_INTRODUCED",
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_INTRODUCED",
+              "FACTS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-20",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "F2",
+              "D1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-21",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "REACTIVATED_DECISION"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "FACTS_MISSING",
+              "REACTIVATED_DECISION"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "REACTIVATED_DECISION"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-22",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-23",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-24",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_INTRODUCED",
+              "DECISIONS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2",
+              "D3"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_INTRODUCED",
+              "DECISIONS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HD-25",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING",
+              "FACTS_ALTERED",
+              "FACTS_MISSING",
+              "REACTIVATED_DECISION",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "F2",
+              "D4",
+              "D5"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING",
+              "FACTS_ALTERED",
+              "FACTS_MISSING",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING",
+              "FACTS_ALTERED",
+              "FACTS_MISSING",
+              "REACTIVATED_DECISION",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          }
+        }
+      ]
+    },
+    "heldout": {
+      "status": "RUN",
+      "cases": 12,
+      "label_review": {
+        "human_reviewed": 0,
+        "not_reviewed": 12
+      },
+      "baselines": {
+        "exact_text": {
+          "confusion_matrix": null,
+          "confusion_matrix_basis": "WITHHELD: no human-reviewed labels in this split",
+          "unreviewed_review_queue": {
+            "meaning": "Disagreement with MODEL-DRAFTED candidate labels. A list of cases to look at, not accuracy.",
+            "cases_compared": 12,
+            "disagreements": 4,
+            "cases": [
+              {
+                "case_id": "HH-01",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HH-02",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HH-03",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HH-06",
+                "candidate_label_drift": true,
+                "baseline_drift": false
+              }
+            ]
+          }
+        },
+        "rule_based": {
+          "confusion_matrix": null,
+          "confusion_matrix_basis": "WITHHELD: no human-reviewed labels in this split",
+          "unreviewed_review_queue": {
+            "meaning": "Disagreement with MODEL-DRAFTED candidate labels. A list of cases to look at, not accuracy.",
+            "cases_compared": 12,
+            "disagreements": 4,
+            "cases": [
+              {
+                "case_id": "HH-01",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HH-02",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HH-03",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              },
+              {
+                "case_id": "HH-04",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              }
+            ]
+          }
+        },
+        "structured_transfer": {
+          "confusion_matrix": null,
+          "confusion_matrix_basis": "WITHHELD: no human-reviewed labels in this split",
+          "unreviewed_review_queue": {
+            "meaning": "Disagreement with MODEL-DRAFTED candidate labels. A list of cases to look at, not accuracy.",
+            "cases_compared": 12,
+            "disagreements": 1,
+            "cases": [
+              {
+                "case_id": "HH-04",
+                "candidate_label_drift": false,
+                "baseline_drift": true
+              }
+            ]
+          }
+        }
+      },
+      "rows": [
+        {
+          "case_id": "HH-01",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2",
+              "D3"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HH-02",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HH-03",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "F2",
+              "D1",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": false,
+            "codes": []
+          }
+        },
+        {
+          "case_id": "HH-04",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": false,
+            "codes": []
+          },
+          "ambiguity_flags": [
+            "REVOKED_DECISION_TRACE_LOST"
+          ],
+          "exact_text": {
+            "drift": false,
+            "not_verbatim": []
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "REACTIVATED_DECISION"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "REVOKED_DECISION_TRACE_LOST"
+            ]
+          }
+        },
+        {
+          "case_id": "HH-05",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "F1",
+              "D2",
+              "D3"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING",
+              "FACTS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HH-06",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "REACTIVATED_DECISION"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": false,
+            "not_verbatim": []
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "FACTS_ALTERED",
+              "REACTIVATED_DECISION"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "REACTIVATED_DECISION"
+            ]
+          }
+        },
+        {
+          "case_id": "HH-07",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          }
+        },
+        {
+          "case_id": "HH-08",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "AUTHORITY_CHANGED",
+              "DECISIONS_ALTERED",
+              "FACTS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "D1",
+              "F2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "AUTHORITY_CHANGED",
+              "DECISIONS_ALTERED",
+              "FACTS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HH-09",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "FACTS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1",
+              "F2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "FACTS_MISSING"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "FACTS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HH-10",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "FACTS_INTRODUCED"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "F1"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_INTRODUCED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "FACTS_INTRODUCED"
+            ]
+          }
+        },
+        {
+          "case_id": "HH-11",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "D2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "FACTS_ALTERED",
+              "FACTS_MISSING",
+              "UNSUPPORTED_FACT_PROMOTION"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "DECISIONS_MISSING"
+            ]
+          }
+        },
+        {
+          "case_id": "HH-12",
+          "review_state": "NOT_REVIEWED",
+          "candidate_label": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "FACTS_ALTERED"
+            ]
+          },
+          "ambiguity_flags": [],
+          "exact_text": {
+            "drift": true,
+            "not_verbatim": [
+              "D1",
+              "F1",
+              "F2"
+            ]
+          },
+          "rule_based": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED"
+            ]
+          },
+          "structured_transfer": {
+            "drift": true,
+            "codes": [
+              "DECISIONS_ALTERED",
+              "FACTS_ALTERED"
+            ]
+          }
+        }
+      ]
+    },
+    "heldout-human": {
+      "status": "NOT_PROVIDED"
+    },
+    "independent-heldout": {
+      "status": "NOT_PROVIDED"
+    }
+  }
+}

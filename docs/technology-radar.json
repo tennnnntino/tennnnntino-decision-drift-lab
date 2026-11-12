@@ -1,0 +1,23 @@
+{
+  "schema": "1.0",
+  "as_of": "2026-11-11",
+  "scope": "This project's engineering decisions; not a live industry survey or prediction",
+  "definitions": {
+    "ADOPT": "Used in this prototype",
+    "TRIAL": "Next experiment with measurable success criteria",
+    "ASSESS": "Research, compare and document trade-offs",
+    "HOLD": "Do not add without validated safety and utility"
+  },
+  "items": [
+    {"id": "R01", "topic": "Structured handoff with stable IDs", "ring": "ADOPT", "rationale": "Allows auditable exact drift detection", "evidence": "ddlab/core.py"},
+    {"id": "R02", "topic": "Deterministic offline evaluation", "ring": "ADOPT", "rationale": "Free reproducibility, no key or network connection", "evidence": "python -m ddlab benchmark"},
+    {"id": "R03", "topic": "Source-aware reporting", "ring": "ADOPT", "rationale": "Preserve evidence references even when no proof verification exists", "evidence": "ddlab/core.py"},
+    {"id": "R04", "topic": "Semantic equivalence scoring", "ring": "TRIAL", "rationale": "Needed to avoid false positives from equivalent paraphrases", "success_criterion": "Measured agreement with human-labelled examples"},
+    {"id": "R05", "topic": "Model-independent adapters", "ring": "TRIAL", "rationale": "Compare agents without provider lock-in", "success_criterion": "Two adapters yield comparable structured traces"},
+    {"id": "R06", "topic": "Independent identity verification", "ring": "ASSESS", "rationale": "Fixture flags are not secure authorization", "success_criterion": "Trusted boundary outside model output"},
+    {"id": "R07", "topic": "Signed evidence bundles", "ring": "ASSESS", "rationale": "Digests alone cannot establish authorship", "success_criterion": "Independent verification of signature and signer"},
+    {"id": "R08", "topic": "Observability standards", "ring": "ASSESS", "rationale": "Measure latency/cost/error in future real model comparisons"},
+    {"id": "R09", "topic": "Autonomous external actions", "ring": "HOLD", "rationale": "No authorization boundary or threat model exists in this demo"},
+    {"id": "R10", "topic": "Production customer data", "ring": "HOLD", "rationale": "Synthetic-only publication and privacy first"}
+  ]
+}

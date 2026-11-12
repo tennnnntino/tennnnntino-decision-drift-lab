@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/decision-drift-lab/case-v1.schema.json",
+  "title": "Synthetic structured handoff fixture V1",
+  "description": "Structured case contract. Since V1.4 it is enforced in tests in both runtimes by the dependency-free subset validators ddlab/schema.py and docs/schema.mjs, and at the CLI by validate and evaluate --strict-schema. The default evaluate path keeps its built-in checks.",
+  "type": "object",
+  "required": ["case_id", "source", "handoff", "action"],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1, "maxLength": 120},
+    "domain": {"type": "string"},
+    "expected_verdict": {"enum": ["PASS", "FAIL"]},
+    "source": {"$ref": "#/$defs/state"},
+    "handoff": {"$ref": "#/$defs/state"},
+    "action": {"type": "object", "properties": {
+      "name": {"type":"string"}, "scope": {"type":"string"},
+      "requires_human": {"type": "boolean"},
+      "human_approval": {"type": "object", "properties": {
+        "approved": {"type": "boolean"}, "actor_type": {"type": "string"},
+        "scope": {"type": "string"}, "action": {"type": "string"}
+      }}
+    }}
+  },
+  "$defs": {
+    "item": {"type": "object", "required": ["id"], "properties": {
+      "id": {"type": "string", "minLength": 1, "maxLength": 120},
+      "text": {"type": "string"}, "status": {"type": "string"},
+      "evidence": {"type": "string"}, "authority": {"type": "string"}
+    }, "additionalProperties": true},
+    "state": {"type":"object", "properties": {
+      "facts": {"type":"array", "maxItems":1000, "items":{"$ref":"#/$defs/item"}},
+      "decisions": {"type":"array", "maxItems":1000, "items":{"$ref":"#/$defs/item"}}
+    }}
+  }
+}
